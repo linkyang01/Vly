@@ -284,38 +284,27 @@ workspace/AGENTS.md (全局)  >  项目/AGENTS.md (项目)  >  项目/README.md
 
 | 阶段 | 要求 |
 |------|------|
-| **立项时** | 生成占位符 AppIcon（每个项目必须**唯一**） |
+| **立项时** | 创建一个临时占位符 AppIcon（手动作图或截图） |
+| **开发期** | 使用临时图标，一眼能识别项目 |
 | **发布前** | 决定是否更新为正式图标 |
 
 #### AppIcon 设计要求
 
 - **每个项目图标必须唯一**，一眼能识别项目
 - 使用项目对应的**主题色**和**功能图标**
+- 临时图标可以是简单的：截图、颜色块、SF Symbols 组合
 - 示例：
-  - Vly: 深蓝 + ▶ (视频播放器)
-  - BeatSleep: 紫色 + 🌙 (助眠)
-  - EyeCare: 绿色 + 👁️ (护眼)
-  - QuitDo: 橙色 + 🚬 (戒烟)
-  - HydraTrack: 青色 + 💧 (喝水)
-
-#### AppIcon 生成脚本
-
-```
-项目路径: scripts/generate_appicon.sh
-使用方法: ./scripts/generate_appicon.sh [项目路径] [颜色] [图标]
-前置依赖: pip3 install Pillow
-
-示例:
-./scripts/generate_appicon.sh "#1a1a2e" "▶"    # Vly
-./scripts/generate_appicon.sh "#7c3aed" "🌙"   # BeatSleep
-./scripts/generate_appicon.sh "#22c55e" "👁️"  # EyeCare
-```
+  - Vly: 深蓝背景 + ▶ (播放器)
+  - BeatSleep: 紫色背景 + 🌙 (助眠)
+  - EyeCare: 绿色背景 + 👁️ (护眼)
+  - QuitDo: 橙色背景 + 🚬 (戒烟)
+  - HydraTrack: 青色背景 + 💧 (喝水)
 
 #### 规范要求
 
-- 每个项目必须包含 `scripts/generate_appicon.sh`
 - 每个项目必须有 `Resources/Assets.xcassets/AppIcon.appiconset/`
-- **立项时执行脚本**，使用项目专属颜色和图标
+- **立项时创建临时图标**（手动作图，不是脚本生成）
+- 开发期间使用该临时图标
 - 发布时再决定是否换正式图标
 
 ---
