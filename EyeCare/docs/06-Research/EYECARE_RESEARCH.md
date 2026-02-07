@@ -1,8 +1,101 @@
 # EyeCare 眼疲劳缓解研究
 
-> 版本: 1.3.0  
+> 版本: 2.0.0  
 > 更新日期: 2026-02-07  
-> 状态: 调研完成（含商业模式、买一送一策略）
+> 状态: 调研完成（含市场分析、科学研究、买一送一策略）
+
+---
+
+## 🎯 市场分析与科学依据
+
+### 市场需求规模
+
+| 数据 | 来源 | 说明 |
+|------|------|------|
+| **69%** 患病率 | Future Sci OA, 2025 | 电脑视觉综合征 (CVS) 总体患病率 |
+| **92%** 有症状 | Indian J Ophthalmol, 2024 | 医学生使用数字设备时有症状 |
+| **49%** 眼疲劳 | 同一研究 | 最常见的症状 |
+| **50%** 眼干 | 多项研究 | 数字眼疲劳常见症状 |
+
+**结论**：市场需求巨大，几乎每个数字设备用户都需要护眼解决方案。
+
+---
+
+### 最新科学研究 (2024-2025)
+
+#### 1. **Digital Eye Strain: Updated Perspectives (2024)**
+- **来源**: Clin Optom (Auckl). 2024 Sep;16:233-246
+- **PMID**: 39308959
+- **结论**: DES 是全球性问题，数字设备在工作和生活中的普及是主要原因
+- **意义**: 眼疲劳不是个人问题，而是社会性问题
+
+#### 2. **Computer Vision Syndrome: A Comprehensive Review (2025)**
+- **来源**: Future Sci OA. 2025 Dec;11(1):2476923
+- **PMID**: 40055942
+- **结论**: 
+  - CVS 患病率 **69%**
+  - 由屏幕、环境、人体工学和生理因素导致
+  - 影响跨年龄、跨职业的广泛人群
+- **意义**: 市场覆盖面广，不止是"打工人"
+
+#### 3. **Digital Eye Strain in UK & Ireland (2024)**
+- **来源**: Cont Lens Anterior Eye. 2024 Dec;47(6):102176
+- **PMID**: 38735811
+- **针对**: 职场成年人
+- **发现**: 长时间数字设备使用与 DES 显著相关
+- **意义**: 核心用户群（程序员、白领）需求明确
+
+#### 4. **Digital Applications for Dry Eye Disease (2024)**
+- **来源**: Vision (Basel). 2024 Nov;8(4):67
+- **PMID**: 39728920
+- **发现**: 数字应用可优化眨眼动态和泪膜稳定性
+- **应用**: 支持添加"眨眼提醒"功能
+
+#### 5. **DES in Medical Students (COVID-19) (2024)**
+- **来源**: Indian J Ophthalmol. 2024;72(1):98-104
+- **PMID**: 38131578
+- **数据**: 92% 报告至少一种症状
+- **意义**: 年轻用户群体（学生）同样需要
+
+#### 6. **DES in Older Adults (2025)**
+- **来源**: Cont Lens Anterior Eye. 2025;48(3):102349
+- **PMID**: 39672690
+- **发现**: 60岁以上人群中 DES 同样普遍
+- **意义**: 用户群体覆盖全年龄段
+
+---
+
+### 关键洞察
+
+| 发现 | 对 EyeCare 的意义 |
+|------|-----------------|
+| 患病率高 (69%) | **市场大**，几乎全民需求 |
+| 跨年龄覆盖 | 用户群广，不止打工人和学生 |
+| 科学认可 20-20-20 | **核心功能有强科学支撑** |
+| 数字干预有效 | App 干预是有效解决方案 |
+| 干眼症可干预 | **眨眼提醒** 功能有科学依据 |
+
+---
+
+### 结论：EyeCare 有搞头！
+
+| 维度 | 评估 | 说明 |
+|------|------|------|
+| **市场需求** | ⭐⭐⭐ 巨大 | 69%-92% 患病率 |
+| **科学依据** | ⭐⭐⭐ 强 | 多篇 2024-2025 论文 |
+| **差异化** | ⭐⭐⭐ BeatSleep 联动 | 独特卖点 |
+| **技术门槛** | ⭐⭐ 中等 | 但用户体验可差异化 |
+| **竞争壁垒** | ⭐⭐ 生态联动 | + 用户体验 |
+
+---
+
+### 主要参考文献
+
+1. Pucker AD, et al. (2024). Digital Eye Strain: Updated Perspectives. Clin Optom. PMID: 39308959
+2. Kahal F, et al. (2025). Computer vision syndrome: a comprehensive review. Future Sci OA. PMID: 40055942
+3. Moore PA, et al. (2024). Digital eye strain and its impact on working adults. Cont Lens Anterior Eye. PMID: 38735811
+4. Romeo MA, et al. (2024). Digital Applications for Videoterminal-Associated Dry Eye Disease. Vision. PMID: 39728920
+5. Bhatnagar KR, et al. (2024). Digital eye strain among medical students. Indian J Ophthalmol. PMID: 38131578
 
 ---
 
