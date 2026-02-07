@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "productId": "linfuse.monthly",
+      "type": "autoRenewableSubscription",
+      "duration": "1M",
+      "localizations": [
+        {
+          "locale": "en-US",
+          "name": "Monthly Subscription",
+          "description": "Access to all premium features. Renews monthly."
+        }
+      ],
+      "pricing": {
+        "US": 1.99,
+        "CN": 18
+      },
+      "introductoryOffer": {
+        "duration": "7D",
+        "paymentMode": "freeTrial",
+        "subscriptionDuration": "1M"
+      },
+      "familySharing": true
+    },
+    {
+      "productId": "linfuse.yearly",
+      "type": "autoRenewableSubscription",
+      "duration": "1Y",
+      "localizations": [
+        {
+          "locale": "en-US",
+          "name": "Yearly Subscription",
+          "description": "Save 58% with annual billing. Premium access for one year."
+        }
+      ],
+      "pricing": {
+        "US": 9.99,
+        "CN": 128
+      },
+      "introductoryOffer": {
+        "duration": "7D",
+        "paymentMode": "freeTrial",
+        "subscriptionDuration": "1Y"
+      },
+      "familySharing": true
+    },
+    {
+      "productId": "linfuse.lifetime",
+      "type": "nonConsumable",
+      "localizations": [
+        {
+          "locale": "en-US",
+          "name": "Lifetime License",
+          "description": "One-time purchase. Lifetime access to all premium features."
+        }
+      ],
+      "pricing": {
+        "US": 19.99,
+        "CN": 198
+      },
+      "familySharing": true
+    }
+  ],
+  "subscriptionGroups": [
+    {
+      "groupId": "linfuse.premium",
+      "subscriptions": [
+        "linfuse.monthly",
+        "linfuse.yearly"
+      ],
+      "offerId": "upgrade_offer"
+    }
+  ]
+}

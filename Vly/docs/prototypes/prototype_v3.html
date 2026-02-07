@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vly - 控制栏原型 V3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            background: #111;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .window {
+            width: 960px;
+            height: 540px;
+            background: #000;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+        
+        .video-area {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #0a0a12 0%, #1a1a2a 100%);
+        }
+        
+        .video-placeholder {
+            width: 60%;
+            height: 50%;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 48px;
+        }
+        
+        /* 悬浮控制栏 - 双行布局 */
+        .floating-control {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 25, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 8px 12px;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        /* 第一行：播放控制 */
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 24px;
+        }
+        
+        .btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: all 0.2s;
+            padding: 4px;
+            color: #fff;
+        }
+        
+        .btn:hover {
+            opacity: 1;
+        }
+        
+        .separator {
+            width: 1px;
+            height: 14px;
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* 第二行：工具栏 */
+        .tool-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            height: 20px;
+        }
+        
+        .time {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 9px;
+            color: rgba(255,255,255,0.6);
+            white-space: nowrap;
+        }
+        
+        /* 音量滑块 */
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .volume-slider {
+            width: 50px;
+            height: 2px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255,255,255,0.2);
+            border-radius: 1px;
+            cursor: pointer;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .volume-slider:hover::-webkit-slider-thumb {
+            opacity: 1;
+        }
+        
+        /* 进度条 */
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            margin-top: 4px;
+        }
+        
+        .progress-track {
+            flex: 1;
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 1px;
+            position: relative;
+            cursor: pointer;
+            min-width: 60px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 30%;
+            background: #fff;
+            border-radius: 1px;
+        }
+        
+        .progress-knob {
+            position: absolute;
+            left: 30%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .progress-track:hover .progress-knob {
+            opacity: 1;
+        }
+        
+        .progress-track:active .progress-knob {
+            opacity: 1;
+        }
+        
+        /* 编辑器面板 */
+        .editor {
+            width: 960px;
+            padding: 30px 0;
+        }
+        
+        .editor-title {
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+        
+        .element-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+        }
+        
+        .element-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #aaa;
+        }
+        
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .row label {
+            color: #888;
+            font-size: 11px;
+            width: 100px;
+        }
+        
+        .row input[type="range"] {
+            width: 150px;
+            cursor: pointer;
+        }
+        
+        .row input[type="number"] {
+            width: 60px;
+            background: #222;
+            border: 1px solid #333;
+            color: #888;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        
+        .row select {
+            background: #222;
+            border: 1px solid #333;
+            color: #888;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        
+        .row span {
+            color: #555;
+            font-size: 10px;
+            width: 50px;
+        }
+        
+        .preset-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .preset-btn {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #888;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        
+        .preset-btn:hover {
+            background: #252525;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="video-area">
+            <div class="video-placeholder">🎬</div>
+        </div>
+        
+        <!-- 悬浮控制栏 V3 - 双行布局 -->
+        <div class="floating-control" id="controlBar">
+            <!-- 第一行：播放控制 -->
+            <div class="control-row" id="controlRow">
+                <!-- 后退15秒 -->
+                <button class="btn" title="后退15秒" id="btnRewind">
+                    <svg width="12" height="12" viewBox="0 0 24 24"><path d="M6.5 3c-1.4 0-2.5 1.1-2.5 2.5v13c0 1.4 1.1 2.5 2.5 2.5h8.1l5.5 3.5V7l-5.5 3.5H6.5c-1.4 0-2.5-1.1-2.5-2.5V5.5C4 4.1 5.1 3 6.5 3zM11 8.5v7l-4-3.5 4-3.5z"/></svg>
+                </button>
+                
+                <!-- 播放/暂停 -->
+                <button class="btn" title="播放" id="btnPlay" style="opacity:1; transform: scale(1.15);">
+                    <svg width="16" height="16" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                
+                <!-- 前进15秒 -->
+                <button class="btn" title="前进15秒" id="btnForward">
+                    <svg width="12" height="12" viewBox="0 0 24 24"><path d="M17.5 3H9.4c-1.4 0-2.5 1.1-2.5 2.5v13c0 1.4 1.1 2.5 2.5 2.5h8.1l5.5 3.5V7l-5.5 3.5zM12 8.5v7l-4-3.5 4-3.5z"/></svg>
+                </button>
+            </div>
+            
+            <!-- 第二行：工具栏 -->
+            <div class="tool-row" id="toolRow">
+                <!-- 播放列表 -->
+                <button class="btn" title="播放列表" id="btnPlaylist">
+                    <svg width="10" height="10" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                </button>
+                
+                <!-- 音量 -->
+                <div class="volume-container" id="volumeContainer">
+                    <button class="btn" title="音量" id="btnVolume">
+                        <svg width="10" height="10" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                    </button>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="80" title="音量">
+                </div>
+                
+                <!-- 时间 -->
+                <span class="time" id="timeDisplay">0:00 / 12:34</span>
+                
+                <div style="flex:1"></div>
+                
+                <!-- 设置 -->
+                <button class="btn" title="设置" id="btnSettings">
+                    <svg width="10" height="10" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58z"/></svg>
+                </button>
+            </div>
+            
+            <!-- 进度条 -->
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-track" id="progressTrack">
+                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-knob" id="progressKnob"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 编辑器面板 -->
+    <div class="editor">
+        <div class="editor-title">布局配置</div>
+        
+        <div class="row">
+            <label>控制栏宽度</label>
+            <input type="range" min="150" max="400" value="220" id="barWidth">
+            <span id="barWidthVal">220px</span>
+        </div>
+        
+        <div class="row">
+            <label>圆角大小</label>
+            <input type="range" min="4" max="20" value="12" id="cornerRadius">
+            <span id="cornerRadiusVal">12px</span>
+        </div>
+        
+        <div class="row">
+            <label>背景透明度</label>
+            <input type="range" min="30" max="100" value="75" id="bgOpacity">
+            <span id="bgOpacityVal">75%</span>
+        </div>
+        
+        <div class="row">
+            <label>模糊强度</label>
+            <input type="range" min="0" max="40" value="20" id="blurRadius">
+            <span id="blurRadiusVal">20px</span>
+        </div>
+        
+        <div class="row">
+            <label>底部距离</label>
+            <input type="range" min="20" max="150" value="60" id="bottomOffset">
+            <span id="bottomOffsetVal">60px</span>
+        </div>
+        
+        <div class="editor-title" style="margin-top: 24px;">元素显示</div>
+        
+        <div class="row">
+            <label>音量滑块</label>
+            <select id="showVolumeSlider">
+                <option value="always">始终显示</option>
+                <option value="hover" selected>Hover 时显示</option>
+                <option value="never">从不显示</option>
+            </select>
+        </div>
+        
+        <div class="row">
+            <label>进度条圆点</label>
+            <select id="showProgressKnob">
+                <option value="always">始终显示</option>
+                <option value="hover" selected>Hover 时显示</option>
+                <option value="never">从不显示</option>
+            </select>
+        </div>
+        
+        <div class="preset-row">
+            <button class="preset-btn" onclick="applyPreset('compact')">紧凑布局</button>
+            <button class="preset-btn" onclick="applyPreset('comfortable')">舒适布局</button>
+            <button class="preset-btn" onclick="applyPreset('full')">完整布局</button>
+        </div>
+        
+        <div class="editor-title" style="margin-top: 24px;">元素列表</div>
+        <div class="element-list">
+            <div class="element-tag">◀◀ 后退15S</div>
+            <div class="element-tag">▶ 播放/暂停</div>
+            <div class="element-tag">▶▶ 前进15S</div>
+            <div class="element-tag">☰ 播放列表</div>
+            <div class="element-tag">🔊 音量 + ───</div>
+            <div class="element-tag">0:00 / 12:34</div>
+            <div class="element-tag">────────── 进度条</div>
+            <div class="element-tag">⚙️ 设置</div>
+        </div>
+    </div>
+    
+    <script>
+        // 获取所有控制元素
+        const controlBar = document.getElementById('controlBar');
+        const progressTrack = document.getElementById('progressTrack');
+        const progressFill = document.getElementById('progressFill');
+        const progressKnob = document.getElementById('progressKnob');
+        const volumeSlider = document.getElementById('volumeSlider');
+        
+        // 进度条交互
+        let isDragging = false;
+        
+        function updateProgress(e) {
+            const rect = progressTrack.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const percent = Math.max(0, Math.min(1, x / rect.width));
+            progressFill.style.width = (percent * 100) + '%';
+            progressKnob.style.left = (percent * 100) + '%';
+        }
+        
+        progressTrack.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            updateProgress(e);
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) updateProgress(e);
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+        
+        // 配置项
+        const configs = {
+            barWidth: { el: document.getElementById('barWidth'), prop: 'width', unit: 'px' },
+            cornerRadius: { el: document.getElementById('cornerRadius'), prop: 'borderRadius', unit: 'px' },
+            bgOpacity: { el: document.getElementById('bgOpacity'), prop: 'backgroundColor', 
+                callback: (v) => `rgba(20, 20, 25, ${v/100})` },
+            blurRadius: { el: document.getElementById('blurRadius'), prop: 'backdropFilter', unit: 'px',
+                callback: (v) => `blur(${v}px)` },
+            bottomOffset: { el: document.getElementById('bottomOffset'), prop: 'bottom', unit: 'px' },
+        };
+        
+        // 绑定事件
+        Object.keys(configs).forEach(key => {
+            const config = configs[key];
+            config.el.addEventListener('input', () => {
+                const val = config.el.value;
+                const display = document.getElementById(key + 'Val');
+                if (display) display.textContent = val + (config.unit || '%');
+                
+                if (config.callback) {
+                    controlBar.style[config.prop] = config.callback(val);
+                } else {
+                    controlBar.style[config.prop] = val + config.unit;
+                }
+            });
+        });
+        
+        // 音量滑块显示模式
+        document.getElementById('showVolumeSlider').addEventListener('change', function() {
+            const val = this.value;
+            if (val === 'always') {
+                volumeSlider.style.opacity = '1';
+            } else if (val === 'hover') {
+                volumeSlider.style.opacity = '';
+            } else {
+                volumeSlider.style.opacity = '0';
+            }
+        });
+        
+        // 进度条圆点显示模式
+        document.getElementById('showProgressKnob').addEventListener('change', function() {
+            const val = this.value;
+            if (val === 'always') {
+                progressKnob.style.opacity = '1';
+            } else if (val === 'hover') {
+                progressKnob.style.opacity = '';
+            } else {
+                progressKnob.style.opacity = '0';
+            }
+        });
+        
+        // 预设布局
+        function applyPreset(preset) {
+            const presets = {
+                compact: { width: '180px', radius: '8px', padding: '6px 8px' },
+                comfortable: { width: '240px', radius: '12px', padding: '8px 12px' },
+                full: { width: '320px', radius: '16px', padding: '10px 16px' }
+            };
+            
+            const p = presets[preset];
+            controlBar.style.width = p.width;
+            controlBar.style.borderRadius = p.radius;
+            controlBar.style.padding = p.padding;
+        }
+        
+        // 播放/暂停切换
+        document.getElementById('btnPlay').addEventListener('click', function() {
+            const svg = this.querySelector('svg');
+            if (svg.getAttribute('d') === 'M8 5v14l11-7z') {
+                svg.setAttribute('d', 'M6 19h4V5H6v14zm8-14v14h4V5h-4z');
+            } else {
+                svg.setAttribute('d', 'M8 5v14l11-7z');
+            }
+        });
+        
+        // 音量图标切换
+        let isMuted = false;
+        document.getElementById('btnVolume').addEventListener('click', function() {
+            isMuted = !isMuted;
+            volumeSlider.value = isMuted ? 0 : 80;
+            const svg = this.querySelector('svg');
+            if (isMuted) {
+                svg.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+            } else {
+                svg.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>';
+            }
+        });
+    </script>
+</body>
+</html>

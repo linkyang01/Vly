@@ -1,0 +1,71 @@
+// MARK: - Home
+"home_title" = "睡眠";
+"home_tonight" = "今晚";
+"home_ready_sleep" = "准备好睡觉了吗？";
+"home_start_routine" = "开始睡眠";
+"home_getting_better" = "进步了！";
+"home_falling_asleep" = "入睡时间";
+"home_recent_sleep" = "最近睡眠";
+"home_see_all" = "查看全部";
+"home_no_records" = "还没有睡眠记录";
+"home_first_session" = "完成第一次练习，开始追踪你的睡眠";
+"home_get_started" = "开始使用";
+
+// MARK: - Techniques
+"select_method_title" = "选择方法";
+"start" = "开始";
+"quit" = "退出";
+"paused" = "已暂停";
+
+// Breathing
+"breathing_title" = "呼吸练习";
+"four7_8_name" = "4-7-8 呼吸";
+"four7_8_desc" = "推荐：紧张焦虑、想快速入睡";
+"two1_6_name" = "2-1-6 呼吸";
+"two1_6_desc" = "推荐：初次尝试、屏息不舒服";
+
+// White Noise
+"whitenoise_title" = "白噪音";
+"whitenoise_name" = "白噪音";
+"whitenoise_desc" = "选择声音：雨声、海浪等";
+
+// Relaxation
+"relaxation_title" = "放松练习";
+"relaxation_name" = "渐进式肌肉放松";
+"relaxation_desc" = "推荐：身体紧绷、压力大";
+"bodyscan_name" = "身体扫描";
+"bodyscan_desc" = "推荐：思绪繁多、停不下来";
+
+// MARK: - Completion
+"completion_title" = "做得好！";
+"completion_message" = "练习完成";
+"completion_quality" = "睡得怎么样？";
+"completion_save" = "保存并继续";
+
+// MARK: - Settings
+"settings_title" = "设置";
+"settings_goal" = "睡眠目标";
+"settings_reminder" = "睡前提醒";
+"settings_reminder_time" = "提醒时间";
+"settings_about" = "关于";
+"settings_version" = "版本";
+"settings_privacy" = "隐私政策";
+"settings_terms" = "服务条款";
+"bedtime_reminder" = "睡前提醒";
+
+// Subscription
+"subscription_title" = "订阅";
+"subscription_free" = "免费试用";
+"subscription_days_remaining" = "剩余 7 天";
+"subscription_upgrade" = "升级到专业版";
+
+// MARK: - Watch
+"watch_title" = "手表";
+"watch_connected" = "Apple Watch 已连接";
+"watch_not_connected" = "Apple Watch 未连接";
+"watch_heart_rate" = "心率";
+"watch_hrv" = "心率变异性";
+"watch_sync" = "同步";
+"duration_title" = "选择时长";
+
+// MARK: - Completion

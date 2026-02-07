@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vly - 播放列表原型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            background: #111;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .window {
+            width: 400px;
+            height: 500px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .btn-close {
+            width: 24px;
+            height: 24px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 4px;
+            color: #888;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-close:hover {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+        
+        .playlist {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+        }
+        
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .item.active {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .thumb {
+            width: 60px;
+            height: 40px;
+            background: #2a2a2a;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 12px;
+        }
+        
+        .info {
+            flex: 1;
+        }
+        
+        .name {
+            font-size: 12px;
+            color: #fff;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .duration {
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .drag {
+            color: #555;
+            cursor: grab;
+        }
+        
+        .footer {
+            padding: 12px 16px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 8px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 6px;
+            color: #aaa;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+        
+        .btn-primary {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+        
+        .editor {
+            width: 400px;
+            padding: 30px 0;
+        }
+        
+        .option-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .option-row label {
+            width: 80px;
+            color: #888;
+            font-size: 11px;
+        }
+        
+        .option-row select, .option-row input {
+            flex: 1;
+            background: #222;
+            border: 1px solid #333;
+            color: #888;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        
+        .element-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .element-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="header">
+            <span class="title">播放列表</span>
+            <button class="btn-close">✕</button>
+        </div>
+        
+        <div class="playlist">
+            <div class="item active">
+                <div class="thumb">🎬</div>
+                <div class="info">
+                    <div class="name">视频文件 1.mp4</div>
+                    <div class="duration">12:34</div>
+                </div>
+                <span class="drag">⋮⋮</span>
+            </div>
+            
+            <div class="item">
+                <div class="thumb">🎬</div>
+                <div class="info">
+                    <div class="name">另一个视频文件 2.mkv</div>
+                    <div class="duration">45:21</div>
+                </div>
+                <span class="drag">⋮⋮</span>
+            </div>
+            
+            <div class="item">
+                <div class="thumb">🎬</div>
+                <div class="info">
+                    <div class="name">教程视频第3集.mov</div>
+                    <div class="duration">23:15</div>
+                </div>
+                <span class="drag">⋮⋮</span>
+            </div>
+            
+            <div class="item">
+                <div class="thumb">🎬</div>
+                <div class="info">
+                    <div class="name">会议录像 2024-01-15.mp4</div>
+                    <div class="duration">1:30:00</div>
+                </div>
+                <span class="drag">⋮⋮</span>
+            </div>
+            
+            <div class="item">
+                <div class="thumb">🎬</div>
+                <div class="info">
+                    <div class="name">示例视频.avi</div>
+                    <div class="duration">08:45</div>
+                </div>
+                <span class="drag">⋮⋮</span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <button class="btn">添加文件</button>
+            <button class="btn btn-primary">清空列表</button>
+        </div>
+    </div>
+    
+    <div class="editor">
+        <div class="option-row">
+            <label>位置</label>
+            <select>
+                <option>右侧边栏</option>
+                <option>左侧边栏</option>
+                <option>底部弹窗</option>
+                <option>中央弹窗</option>
+            </select>
+        </div>
+        <div class="option-row">
+            <label>宽度</label>
+            <input type="range" min="250" max="500" value="320">
+            <span>320px</span>
+        </div>
+        
+        <div class="element-list">
+            <div class="element-tag">标题栏</div>
+            <div class="element-tag">缩略图</div>
+            <div class="element-tag">文件名</div>
+            <div class="element-tag">时长</div>
+            <div class="element-tag">拖拽手柄</div>
+            <div class="element-tag">添加按钮</div>
+            <div class="element-tag">清空按钮</div>
+        </div>
+    </div>
+</body>
+</html>

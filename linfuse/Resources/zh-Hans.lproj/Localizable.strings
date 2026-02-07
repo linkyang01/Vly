@@ -1,0 +1,168 @@
+/* 
+ Localizable.strings - Simplified Chinese (zh-Hans)
+ linfuse v1.0
+*/
+
+// MARK: - App
+"app.name" = "linfuse";
+"app.version" = "版本";
+"app.build" = "构建";
+
+// MARK: - Sidebar
+"sidebar.library" = "资料库";
+"sidebar.allMovies" = "所有电影";
+"sidebar.recentlyAdded" = "最近添加";
+"sidebar.continueWatching" = "继续观看";
+"sidebar.watchlist" = "观看清单";
+"sidebar.smartCollections" = "智能合集";
+"sidebar.topRated" = "高分佳作";
+"sidebar.recentlyWatched" = "最近观看";
+"sidebar.genres" = "类型";
+"sidebar.libraryFolders" = "资料库文件夹";
+"sidebar.addFolder" = "添加文件夹...";
+
+// MARK: - Toolbar
+"toolbar.search" = "搜索电影...";
+"toolbar.sort" = "排序";
+"toolbar.filter" = "筛选";
+"toolbar.view" = "视图";
+"toolbar.import" = "导入";
+
+// MARK: - Sort Options
+"sort.title" = "标题";
+"sort.dateAdded" = "添加日期";
+"sort.releaseDate" = "上映日期";
+"sort.rating" = "评分";
+"sort.duration" = "时长";
+"sort.watchProgress" = "观看进度";
+
+// MARK: - Filter Options
+"filter.all" = "全部";
+"filter.unwatched" = "未观看";
+"filter.watched" = "已观看";
+"filter.inProgress" = "正在观看";
+
+// MARK: - View Modes
+"view.grid" = "网格";
+"view.list" = "列表";
+"view.hero" = "大图";
+
+// MARK: - Empty State
+"empty.noMovies" = "暂无电影";
+"empty.addMoviesToStart" = "添加电影到资料库以开始";
+"empty.noResults" = "无结果";
+"empty.noResultsFound" = "未找到匹配的电影";
+
+// MARK: - Movie Detail
+"detail.overview" = "简介";
+"detail.castCrew" = "演职人员";
+"detail.related" = "相关内容";
+"detail.play" = "播放";
+"detail.resume" = "继续";
+"detail.addToWatchlist" = "添加到观看清单";
+"detail.inWatchlist" = "已在观看清单";
+"detail.details" = "详情";
+"detail.added" = "添加时间";
+"detail.released" = "上映日期";
+"detail.runtime" = "时长";
+"detail.fileSize" = "文件大小";
+"detail.watched" = "观看次数";
+"detail.times" = "次";
+"detail.progress" = "进度";
+"detail.partOfCollection" = "所属系列";
+"detail.videoInfo" = "视频信息";
+"detail.fileName" = "文件名";
+"detail.codec" = "编码";
+"detail.resolution" = "分辨率";
+
+// MARK: - Importer
+"importer.title" = "导入视频";
+"importer.dropZone" = "将视频拖放到此处";
+"importer.browse" = "或点击浏览";
+"importer.importing" = "正在导入...";
+"importer.complete" = "导入完成";
+"importer.success" = "个视频已添加到资料库";
+"importer.chooseFiles" = "选择文件...";
+"importer.filesSelected" = "个文件已选择";
+
+// MARK: - Player
+"player.nowPlaying" = "正在播放";
+"player.play" = "播放";
+"player.pause" = "暂停";
+"player.stop" = "停止";
+"player.rewind" = "快退";
+"player.forward" = "快进";
+"player.fullscreen" = "全屏";
+"player.exitFullscreen" = "退出全屏";
+"player.closedCaptions" = "字幕";
+"player.playbackSpeed" = "播放速度";
+"player.volume" = "音量";
+"player.decodingRestricted" = "解码受限";
+"player.upgradeFor蓝光" = "升级到 Pro 版以播放蓝光原盘";
+"player.upgradeFor4K" = "升级到 Pro 版以解锁 4K HEVC 解码";
+"player.upgradeMessage" = "此功能需要付费订阅";
+
+// MARK: - Settings
+"settings.title" = "设置";
+"settings.general" = "通用";
+"settings.library" = "资料库";
+"settings.libraryPath" = "资料库路径";
+"settings.browse" = "浏览";
+"settings.autoFetchMetadata" = "自动获取元数据";
+"settings.enableMonitoring" = "启用文件夹监控";
+"settings.player" = "播放器";
+"settings.defaultPlayer" = "默认播放器";
+"settings.metadata" = "元数据";
+"settings.imageQuality" = "图片质量";
+"settings.imageQuality.low" = "低";
+"settings.imageQuality.medium" = "中";
+"settings.imageQuality.high" = "高";
+"settings.data" = "数据";
+"settings.clearCache" = "清除缓存";
+"settings.resetLibrary" = "重置资料库";
+"settings.about" = "关于";
+"settings.version" = "版本";
+"settings.build" = "构建";
+"settings.privacy" = "隐私政策";
+"settings.terms" = "服务条款";
+"settings.licenses" = "开源许可";
+
+// MARK: - Subscription
+"subscription.free" = "免费版";
+"subscription.pro" = "Pro";
+"subscription.yearly" = "年度订阅";
+"subscription.lifetime" = "永久买断";
+"subscription.unlockAll" = "解锁全部功能";
+"subscription.features.蓝光" = "蓝光原盘播放";
+"subscription.features.4K" = "4K HEVC 解码";
+"subscription.features.dolby" = "杜比视界/全景声";
+"subscription.features.updates" = "未来更新";
+"subscription.perYear" = "/年";
+"subscription.oneTime" = "一次性";
+"subscription.upgradeNow" = "立即升级";
+"subscription.restorePurchases" = "恢复购买";
+
+// MARK: - Errors
+"error.loadMovies" = "加载电影出错";
+"error.loadDetails" = "加载详情出错";
+"error.network" = "网络错误";
+"error.fileNotFound" = "文件未找到";
+"error.decodingFailed" = "解码失败";
+"error.unknown" = "发生未知错误";
+
+// MARK: - Common
+"common.cancel" = "取消";
+"common.confirm" = "确认";
+"common.save" = "保存";
+"common.delete" = "删除";
+"common.edit" = "编辑";
+"common.close" = "关闭";
+"common.retry" = "重试";
+"common.loading" = "加载中...";
+"common.ok" = "确定";
+"common.yes" = "是";
+"common.no" = "否";
+"common.all" = "全部";
+"common.none" = "无";
+"common.back" = "返回";
+"common.forward" = "前进";

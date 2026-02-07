@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>linfuse UI Design</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; background: #1a1a1a; color: #fff; }
+        
+        .container { display: flex; height: 100vh; }
+        
+        /* Sidebar */
+        .sidebar { width: 240px; background: #252525; padding: 16px 0; border-right: 1px solid #333; }
+        .sidebar-section { margin-bottom: 24px; }
+        .sidebar-title { font-size: 11px; font-weight: 600; color: #888; padding: 0 16px; margin-bottom: 8px; text-transform: uppercase; }
+        .sidebar-item { display: flex; align-items: center; gap: 10px; padding: 8px 16px; cursor: pointer; transition: 0.2s; }
+        .sidebar-item:hover { background: #333; }
+        .sidebar-item.active { color: #007AFF; background: rgba(0,122,255,0.1); }
+        .sidebar-item svg { width: 16px; height: 16px; opacity: 0.7; }
+        .folder-count { font-size: 11px; color: #666; margin-left: auto; }
+        
+        /* Main Content */
+        .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        
+        /* Toolbar */
+        .toolbar { display: flex; align-items: center; gap: 16px; padding: 12px 24px; background: #1e1e1e; border-bottom: 1px solid #333; }
+        .search-box { display: flex; align-items: center; gap: 8px; background: #333; border-radius: 8px; padding: 8px 12px; flex: 1; max-width: 400px; }
+        .search-box input { background: transparent; border: none; outline: none; color: #fff; width: 100%; font-size: 13px; }
+        .search-box svg { width: 14px; opacity: 0.5; }
+        .toolbar-btn { display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: transparent; border: 1px solid #444; border-radius: 6px; cursor: pointer; font-size: 12px; }
+        .toolbar-btn:hover { background: #333; }
+        .view-toggle { display: flex; background: #333; border-radius: 6px; overflow: hidden; }
+        .view-btn { padding: 6px 12px; cursor: pointer; opacity: 0.6; }
+        .view-btn.active { opacity: 1; background: #444; }
+        
+        /* Content Area */
+        .content { flex: 1; padding: 24px; overflow-y: auto; }
+        
+        /* Grid View */
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
+        .movie-card { cursor: pointer; transition: transform 0.2s; }
+        .movie-card:hover { transform: scale(1.02); }
+        .movie-poster { position: relative; aspect-ratio: 2/3; background: linear-gradient(135deg, #2a2a2a, #1a1a1a); border-radius: 8px; overflow: hidden; margin-bottom: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .movie-poster img { width: 100%; height: 100%; object-fit: cover; }
+        .movie-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .movie-meta { font-size: 11px; color: #888; }
+        .progress-bar { position: absolute; bottom: 0; left: 0; height: 4px; background: #007AFF; }
+        
+        /* Detail Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 100; }
+        .modal.show { display: flex; }
+        .modal-content { width: 900px; height: 700px; margin: auto; background: #1a1a1a; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+        .modal-header { position: relative; height: 300px; background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%); display: flex; align-items: flex-end; padding: 24px; }
+        .modal-backdrop { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-size: cover; background-position: center; filter: blur(2px); }
+        .modal-poster { width: 140px; height: 210px; background: #333; border-radius: 8px; margin-right: 20px; flex-shrink: 0; }
+        .modal-info { flex: 1; }
+        .modal-title { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+        .modal-meta { display: flex; gap: 16px; font-size: 13px; color: #aaa; margin-bottom: 16px; }
+        .modal-actions { display: flex; gap: 12px; }
+        .btn-primary { padding: 10px 24px; background: #007AFF; border: none; border-radius: 8px; color: #fff; font-weight: 600; cursor: pointer; }
+        .btn-secondary { padding: 10px 24px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; cursor: pointer; }
+        .modal-tabs { display: flex; padding: 0 24px; border-bottom: 1px solid #333; }
+        .modal-tab { padding: 12px 16px; cursor: pointer; font-size: 13px; border-bottom: 2px solid transparent; }
+        .modal-tab.active { border-bottom-color: #007AFF; color: #007AFF; }
+        .modal-body { flex: 1; padding: 24px; overflow-y: auto; }
+        .overview-text { font-size: 14px; line-height: 1.6; color: #ccc; max-width: 600px; }
+        
+        /* Settings Modal */
+        .settings-panel { width: 500px; margin: auto; background: #252525; border-radius: 12px; overflow: hidden; }
+        .settings-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid #333; }
+        .settings-title { font-size: 16px; font-weight: 600; }
+        .settings-section { padding: 20px 24px; border-bottom: 1px solid #333; }
+        .settings-label { font-size: 13px; color: #aaa; margin-bottom: 8px; display: block; }
+        .settings-input { width: 100%; padding: 10px 12px; background: #333; border: 1px solid #444; border-radius: 6px; color: #fff; font-size: 13px; }
+        .toggle-row { display: flex; justify-content: space-between; align-items: center; }
+        .toggle { width: 40px; height: 24px; background: #444; border-radius: 12px; position: relative; cursor: pointer; }
+        .toggle.active { background: #007AFF; }
+        .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: #fff; border-radius: 50%; transition: 0.2s; }
+        .toggle.active::after { left: 18px; }
+        
+        /* Header for demo tabs */
+        .demo-tabs { display: flex; gap: 12px; padding: 12px 24px; background: #252525; border-bottom: 1px solid #333; }
+        .demo-tab { padding: 8px 16px; background: transparent; border: 1px solid #444; border-radius: 6px; color: #888; cursor: pointer; font-size: 12px; }
+        .demo-tab.active { background: #007AFF; border-color: #007AFF; color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="demo-tabs">
+        <div class="demo-tab active" onclick="showDemo('library')">📚 Library 媒体库</div>
+        <div class="demo-tab" onclick="showDemo('detail')">🎬 Detail 详情页</div>
+        <div class="demo-tab" onclick="showDemo('settings')">⚙️ Settings 设置</div>
+        <div class="demo-tab" onclick="showDemo('import')">📥 Import 导入</div>
+    </div>
+    
+    <div class="container" id="demo-content">
+        <!-- Library View -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Library</div>
+                <div class="sidebar-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></svg>
+                    All Movies
+                </div>
+                <div class="sidebar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Recently Added
+                </div>
+                <div class="sidebar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    Continue Watching
+                </div>
+                <div class="sidebar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                    Watchlist
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Genres</div>
+                <div class="sidebar-item">🎬 Action</div>
+                <div class="sidebar-item">😂 Comedy</div>
+                <div class="sidebar-item">😱 Horror</div>
+                <div class="sidebar-item">🚀 Sci-Fi</div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Library Folders</div>
+                <div class="sidebar-item">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                    Movies
+                    <span class="folder-count">42</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main">
+            <div class="toolbar">
+                <div class="search-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <input type="text" placeholder="Search movies...">
+                </div>
+                <div class="toolbar-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4M12 8V4M17 8V4M3 12h18M7 20v-4M12 16v-4M17 16v-4"/></svg>
+                    Sort
+                </div>
+                <div class="toolbar-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg>
+                    Filter
+                </div>
+                <div class="view-toggle">
+                    <div class="view-btn active">▦</div>
+                    <div class="view-btn">☰</div>
+                    <div class="view-btn">▣</div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="movie-grid" id="movie-grid">
+                    <!-- Movies will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const movies = [
+            { title: "Dune: Part Two", year: 2024, rating: 8.8, progress: 0, poster: "linear-gradient(135deg, #ff6b35, #f7931e)" },
+            { title: "Oppenheimer", year: 2023, rating: 8.5, progress: 100, poster: "linear-gradient(135deg, #1a1a2e, #16213e)" },
+            { title: "The Batman", year: 2022, rating: 8.1, progress: 45, poster: "linear-gradient(135deg, #2c2c2c, #1a1a1a)" },
+            { title: "Everything Everywhere", year: 2022, rating: 7.8, progress: 0, poster: "linear-gradient(135deg, #ff6b9d, #c44569)" },
+            { title: "Top Gun: Maverick", year: 2022, rating: 8.3, progress: 0, poster: "linear-gradient(135deg, #1e3a5f, #0d1b2a)" },
+            { title: "Spider-Man: Across", year: 2023, rating: 8.6, progress: 20, poster: "linear-gradient(135deg, #ff4757, #ff6b81)" },
+            { title: "Interstellar", year: 2014, rating: 8.7, progress: 0, poster: "linear-gradient(135deg, #0f0f23, #1a1a3e)" },
+            { title: "Inception", year: 2010, rating: 8.8, progress: 100, poster: "linear-gradient(135deg, #1a1a2e, #16213e)" },
+        ];
+        
+        function renderMovies() {
+            const grid = document.getElementById('movie-grid');
+            grid.innerHTML = movies.map(m => `
+                <div class="movie-card">
+                    <div class="movie-poster" style="background: ${m.poster}">
+                        ${m.progress > 0 ? `<div class="progress-bar" style="width: ${m.progress}%"></div>` : ''}
+                        ${m.progress === 100 ? '<div style="position:absolute;bottom:8px;right:8px;font-size:16px;">✓</div>' : ''}
+                    </div>
+                    <div class="movie-title">${m.title}</div>
+                    <div class="movie-meta">${m.year} · ⭐ ${m.rating}</div>
+                </div>
+            `).join('');
+        }
+        
+        function showDemo(type) {
+            document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const content = document.getElementById('demo-content');
+            
+            if (type === 'library') {
+                content.innerHTML = document.querySelector('.sidebar').parent.outerHTML;
+            } else if (type === 'detail') {
+                content.innerHTML = `
+                    <div class="modal-content" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);">
+                        <div class="modal-header">
+                            <div class="modal-backdrop" style="background: linear-gradient(135deg, #1a1a2e, #0f0f23);"></div>
+                            <div class="modal-poster"></div>
+                            <div class="modal-info">
+                                <div class="modal-title">Dune: Part Two</div>
+                                <div class="modal-meta">2024 · 2h 46m · ⭐ 8.8</div>
+                                <div class="modal-actions">
+                                    <button class="btn-primary">▶ Play</button>
+                                    <button class="btn-secondary">+ Watchlist</button>
+                                    <button class="btn-secondary" style="background:rgba(255,165,0,0.2);border-color:rgba(255,165,0,0.4);">▶ Resume</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-tabs">
+                            <div class="modal-tab active">Overview</div>
+                            <div class="modal-tab">Cast & Crew</div>
+                            <div class="modal-tab">Related</div>
+                        </div>
+                        <div class="modal-body">
+                            <p class="overview-text">Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he must prevent a terrible future only he can foresee.</p>
+                        </div>
+                    </div>
+                `;
+            } else if (type === 'settings') {
+                content.innerHTML = `
+                    <div class="settings-panel">
+                        <div class="settings-header">
+                            <div class="settings-title">Settings</div>
+                        </div>
+                        <div class="settings-section">
+                            <label class="settings-label">General</label>
+                            <div class="toggle-row">
+                                <span>Auto-fetch metadata</span>
+                                <div class="toggle active" onclick="this.classList.toggle('active')"></div>
+                            </div>
+                            <div class="toggle-row" style="margin-top:12px;">
+                                <span>Enable folder monitoring</span>
+                                <div class="toggle active" onclick="this.classList.toggle('active')"></div>
+                            </div>
+                        </div>
+                        <div class="settings-section">
+                            <label class="settings-label">Image Quality</label>
+                            <div class="view-toggle" style="width:200px;">
+                                <div class="view-btn">Low</div>
+                                <div class="view-btn">Medium</div>
+                                <div class="view-btn active" style="background:#444;">High</div>
+                            </div>
+                        </div>
+                        <div class="settings-section">
+                            <label class="settings-label">TMDB API Key</label>
+                            <input type="password" class="settings-input" value="••••••••••••••••" placeholder="Enter your TMDB API key">
+                        </div>
+                        <div class="settings-section">
+                            <label class="settings-label">Data</label>
+                            <div class="toggle-row">
+                                <span>Clear cache</span>
+                                <button style="padding:6px 12px;background:#333;border:1px solid #444;border-radius:6px;color:#fff;cursor:pointer;">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (type === 'import') {
+                content.innerHTML = `
+                    <div style="display:flex;align-items:center;justify-content:center;height:100%;background:#1a1a1a;">
+                        <div style="text-align:center;padding:40px;border:2px dashed #444;border-radius:12px;">
+                            <div style="font-size:48px;margin-bottom:16px;">📁</div>
+                            <div style="font-size:18px;font-weight:600;margin-bottom:8px;">Drop videos here</div>
+                            <div style="color:#888;margin-bottom:24px;">or click to browse</div>
+                            <button style="padding:10px 24px;background:#007AFF;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;">Select Files</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        renderMovies();
+    </script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vly - 控制栏原型 V5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            background: #111;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .window {
+            width: 960px;
+            height: 540px;
+            background: #000;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+        
+        .video-area {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #0a0a12 0%, #1a1a2a 100%);
+        }
+        
+        .video-placeholder {
+            width: 60%;
+            height: 50%;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 48px;
+        }
+        
+        /* 悬浮控制栏 */
+        .floating-control {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 25, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 10px 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 265px;
+        }
+        
+        /* 第一行 */
+        .row-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 32px;
+        }
+        
+        /* 左侧组：音量 + 播放控制 */
+        .left-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* 音量区 */
+        .volume-area {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            padding: 2px 4px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 4px;
+        }
+        
+        /* 播放控制区 */
+        .play-controls {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* 玻璃质感按钮 */
+        .btn {
+            background: rgba(255,255,255,0.08);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            transition: all 0.15s;
+        }
+        
+        .btn:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .btn:active {
+            background: rgba(255,255,255,0.2);
+            transform: scale(0.95);
+        }
+        
+        .btn svg {
+            fill: #fff;
+        }
+        
+        /* 前进后退 - 小按钮 */
+        .btn-mini {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* 播放按钮 - 大按钮 */
+        .btn-play {
+            width: 32px;
+            height: 32px;
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .btn-play:hover {
+            background: rgba(255,255,255,0.22);
+        }
+        
+        /* 音量滑块 - 小 */
+        .volume-slider {
+            width: 39px;
+            height: 2px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255,255,255,0.3);
+            border-radius: 1px;
+            cursor: pointer;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+        }
+        
+        /* 右侧组：工具按钮 - 小 */
+        .right-group {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .btn-tool {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* 第二行：进度条 */
+        .row-bottom {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 20px;
+        }
+        
+        .time {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 9px;
+            color: rgba(255,255,255,0.6);
+            white-space: nowrap;
+        }
+        
+        /* 进度条 */
+        .progress-track {
+            flex: 1;
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 1px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 30%;
+            background: #fff;
+            border-radius: 1px;
+        }
+        
+        .progress-knob {
+            position: absolute;
+            left: 30%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .progress-track:hover .progress-knob,
+        .progress-track:active .progress-knob {
+            opacity: 1;
+        }
+        
+        /* 编辑器 */
+        .editor {
+            width: 960px;
+            padding: 30px 0;
+        }
+        
+        .element-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+        }
+        
+        .element-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #aaa;
+        }
+        
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .row label {
+            color: #888;
+            font-size: 11px;
+            width: 100px;
+        }
+        
+        .row input[type="range"] {
+            width: 120px;
+            cursor: pointer;
+        }
+        
+        .row span {
+            color: #555;
+            font-size: 10px;
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="video-area">
+            <div class="video-placeholder">🎬</div>
+        </div>
+        
+        <!-- 悬浮控制栏 V5 -->
+        <div class="floating-control" id="controlBar" style="width: 260px;">
+            <!-- 第一行 -->
+            <div class="row-top">
+                <!-- 左侧：音量 + 播放控制 -->
+                <div class="left-group">
+                    <!-- 音量 -->
+                    <div class="volume-area">
+                        <button class="btn btn-mini" title="音量">
+                            <svg width="10" height="10" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                        </button>
+                        <input type="range" class="volume-slider" min="0" max="100" value="80">
+                    </div>
+                    
+                    <!-- 播放控制 -->
+                    <button class="btn btn-mini" title="后退15秒">
+                        <svg width="10" height="10" viewBox="0 0 24 24"><path d="M6.5 3c-1.4 0-2.5 1.1-2.5 2.5v13c0 1.4 1.1 2.5 2.5 2.5h8.1l5.5 3.5V7l-5.5 3.5H6.5c-1.4 0-2.5-1.1-2.5-2.5V5.5C4 4.1 5.1 3 6.5 3zM11 8.5v7l-4-3.5 4-3.5z"/></svg>
+                    </button>
+                    
+                    <button class="btn btn-play" title="播放" id="btnPlay">
+                        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    
+                    <button class="btn btn-mini" title="前进15秒">
+                        <svg width="10" height="10" viewBox="0 0 24 24"><path d="M17.5 3H9.4c-1.4 0-2.5 1.1-2.5 2.5v13c0 1.4 1.1 2.5 2.5 2.5h8.1l5.5 3.5V7l-5.5 3.5zM12 8.5v7l-4-3.5 4-3.5z"/></svg>
+                    </button>
+                </div>
+                
+                <!-- 右侧：工具 -->
+                <div class="right-group">
+                    <button class="btn btn-tool" title="播放列表">
+                        <svg width="10" height="10" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                    </button>
+                    
+                    <button class="btn btn-tool" title="设置">
+                        <svg width="10" height="10" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58z"/></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 第二行：进度条 -->
+            <div class="row-bottom">
+                <span class="time">0:00</span>
+                
+                <div class="progress-track" id="progressTrack">
+                    <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-knob" id="progressKnob"></div>
+                </div>
+                
+                <span class="time">12:34</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="editor">
+        <div class="row">
+            <label>控制栏宽度</label>
+            <input type="range" min="200" max="350" value="265" id="barWidth">
+            <span>265px</span>
+        </div>
+        
+        <div class="row">
+            <label>音量滑块宽度</label>
+            <input type="range" min="20" max="60" value="39" id="volumeWidth">
+            <span>39px</span>
+        </div>
+        
+        <div class="row">
+            <label>播放按钮大小</label>
+            <input type="range" min="24" max="40" value="32" id="playBtnSize">
+            <span>32px</span>
+        </div>
+        
+        <div class="row">
+            <label>工具按钮大小</label>
+            <input type="range" min="14" max="24" value="18" id="toolBtnSize">
+            <span>18px</span>
+        </div>
+        
+        <div class="element-list">
+            <div class="element-tag">🔊 ◀▶ 音量</div>
+            <div class="element-tag">◀ 小</div>
+            <div class="element-tag">▶▶ 大（突出）</div>
+            <div class="element-tag">☰ ⚙ 工具</div>
+            <div class="element-tag">──────── 进度条</div>
+        </div>
+    </div>
+    
+    <script>
+        const controlBar = document.getElementById('controlBar');
+        const progressTrack = document.getElementById('progressTrack');
+        const progressFill = document.getElementById('progressFill');
+        const progressKnob = document.getElementById('progressKnob');
+        
+        // 进度条交互
+        let isDragging = false;
+        function updateProgress(e) {
+            const rect = progressTrack.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const percent = Math.max(0, Math.min(1, x / rect.width));
+            progressFill.style.width = (percent * 100) + '%';
+            progressKnob.style.left = (percent * 100) + '%';
+        }
+        progressTrack.addEventListener('mousedown', (e) => { isDragging = true; updateProgress(e); });
+        document.addEventListener('mousemove', (e) => { if(isDragging) updateProgress(e); });
+        document.addEventListener('mouseup', () => { isDragging = false; });
+        
+        // 配置
+        document.getElementById('barWidth').oninput = function() {
+            controlBar.style.width = this.value + 'px';
+            this.nextElementSibling.textContent = this.value + 'px';
+        };
+        document.getElementById('volumeWidth').oninput = function() {
+            document.querySelector('.volume-slider').style.width = this.value + 'px';
+            this.nextElementSibling.textContent = this.value + 'px';
+        };
+        document.getElementById('playBtnSize').oninput = function() {
+            const btn = document.querySelector('.btn-play');
+            btn.style.width = this.value + 'px';
+            btn.style.height = this.value + 'px';
+            btn.querySelector('svg').style.width = (this.value * 0.56) + 'px';
+            btn.querySelector('svg').style.height = (this.value * 0.56) + 'px';
+            this.nextElementSibling.textContent = this.value + 'px';
+        };
+        document.getElementById('toolBtnSize').oninput = function() {
+            document.querySelectorAll('.btn-mini, .btn-tool').forEach(btn => {
+                btn.style.width = this.value + 'px';
+                btn.style.height = this.value + 'px';
+            });
+            this.nextElementSibling.textContent = this.value + 'px';
+        };
+        
+        // 播放切换
+        document.getElementById('btnPlay').addEventListener('click', function() {
+            const svg = this.querySelector('svg');
+            if (svg.getAttribute('d') === 'M8 5v14l11-7z') {
+                svg.setAttribute('d', 'M6 19h4V5H6v14zm8-14v14h4V5h-4z');
+            } else {
+                svg.setAttribute('d', 'M8 5v14l11-7z');
+            }
+        });
+    </script>
+</body>
+</html>

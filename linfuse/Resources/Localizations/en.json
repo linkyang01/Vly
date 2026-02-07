@@ -1,0 +1,94 @@
+{
+  "appName" : "linfuse",
+  "menu" : {
+    "library" : "Library",
+    "importVideos" : "Import Videos...",
+    "addFolder" : "Add Library Folder...",
+    "refreshMetadata" : "Refresh Metadata",
+    "playback" : "Playback",
+    "playPause" : "Play/Pause",
+    "skipForward" : "Skip Forward",
+    "skipBackward" : "Skip Backward"
+  },
+  "sidebar" : {
+    "allMovies" : "All Movies",
+    "recentlyAdded" : "Recently Added",
+    "continueWatching" : "Continue Watching",
+    "watchlist" : "Watchlist",
+    "smartCollections" : "Smart Collections",
+    "topRated" : "Top Rated",
+    "recentlyWatched" : "Recently Watched",
+    "genres" : "Genres",
+    "libraryFolders" : "Library Folders",
+    "addFolder" : "Add Folder..."
+  },
+  "toolbar" : {
+    "search" : "Search movies...",
+    "sort" : "Sort",
+    "filter" : "Filter",
+    "view" : "View",
+    "import" : "Import"
+  },
+  "sortOptions" : {
+    "title" : "Title",
+    "dateAdded" : "Date Added",
+    "releaseDate" : "Release Date",
+    "rating" : "Rating",
+    "duration" : "Duration",
+    "watchProgress" : "In Progress"
+  },
+  "filterOptions" : {
+    "all" : "All",
+    "unwatched" : "Unwatched",
+    "watched" : "Watched",
+    "inProgress" : "In Progress"
+  },
+  "viewModes" : {
+    "grid" : "Grid",
+    "list" : "List",
+    "hero" : "Hero"
+  },
+  "emptyState" : {
+    "noMovies" : "No Movies",
+    "addMoviesToStart" : "Add movies to your library to get started"
+  },
+  "settings" : {
+    "general" : "General",
+    "autoFetchMetadata" : "Auto-fetch metadata",
+    "enableMonitoring" : "Enable folder monitoring",
+    "imageQuality" : "Image Quality",
+    "tmdbApi" : "TMDB API",
+    "apiKey" : "API Key",
+    "data" : "Data",
+    "clearCache" : "Clear cache",
+    "resetLibrary" : "Reset library",
+    "about" : "About",
+    "version" : "Version",
+    "build" : "Build"
+  },
+  "importer" : {
+    "title" : "Import Videos",
+    "dropZone" : "Drop videos here",
+    "browse" : "or click to browse",
+    "importing" : "Importing...",
+    "complete" : "Import Complete",
+    "success" : "video(s) have been added to your library."
+  },
+  "detail" : {
+    "overview" : "Overview",
+    "castCrew" : "Cast & Crew",
+    "related" : "Related",
+    "play" : "Play",
+    "resume" : "Resume",
+    "watchlist" : "Watchlist",
+    "details" : "Details",
+    "added" : "Added",
+    "released" : "Released",
+    "runtime" : "Runtime",
+    "fileSize" : "File size",
+    "watched" : "Watched",
+    "times" : "times",
+    "progress" : "Progress",
+    "partOfCollection" : "Part of Collection"
+  }
+}

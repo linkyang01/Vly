@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIconFile</key>
+    <string></string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+    <key>CFBundleShortVersionString</key>
+    <string>$(MARKETING_VERSION)</string>
+    <key>CFBundleVersion</key>
+    <string>$(CURRENT_PROJECT_VERSION)</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.video</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+    <key>NSHumanReadableCopyright</key>
+    <string>Copyright © 2024. All rights reserved.</string>
+    <key>NSMainStoryboardFile</key>
+    <string></string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    
+    <!-- Video Playback Capabilities -->
+    <key>UTImportedTypeDeclarations</key>
+    <array>
+        <dict>
+            <key>UTTypeConformsTo</key>
+            <array>
+                <string>public.movie</string>
+                <string>public.audiovisual-content</string>
+            </array>
+            <key>UTTypeDescription</key>
+            <string>Video File</string>
+            <key>UTTypeIdentifier</key>
+            <string>public.video</string>
+            <key>UTTypeTagSpecification</key>
+            <dict>
+                <key>public.filename-extension</key>
+                <array>
+                    <string>mp4</string>
+                    <string>m4v</string>
+                    <string>mov</string>
+                    <string>mkv</string>
+                    <string>avi</string>
+                    <string>wmv</string>
+                    <string>flv</string>
+                    <string>webm</string>
+                    <string>mpg</string>
+                    <string>mpeg</string>
+                    <string>3gp</string>
+                    <string>3g2</string>
+                    <string>ogg</string>
+                </array>
+            </dict>
+        </dict>
+    </array>
+    
+    <!-- Document Types -->
+    <key>CFBundleDocumentTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeName</key>
+            <string>Video</string>
+            <key>CFBundleTypeRole</key>
+            <string>Viewer</string>
+            <key>LSHandlerRank</key>
+            <string>Alternate</string>
+            <key>LSItemContentTypes</key>
+            <array>
+                <string>public.movie</string>
+                <string>public.video</string>
+                <string>com.apple.quicktime-movie</string>
+                <string>public.mpeg-4</string>
+                <string>public.matroska</string>
+                <string>public.avi</string>
+                <string>public.mpeg-2-transport-stream</string>
+            </array>
+        </dict>
+    </array>
+    
+    <!-- URL Schemes -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>com.linfuse.app</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>linfuse</string>
+            </array>
+        </dict>
+    </array>
+    
+    <!-- Apple Silicon Optimization -->
+    <key>NSRequiresAquaSystemAppearance</key>
+    <false/>
+    
+    <!-- HomeKit Access -->
+    <key>NSHomeKitUsageDescription</key>
+    <string>linfuse needs access to HomeKit to integrate with smart home devices for playback control.</string>
+    
+    <!-- Privacy Keys -->
+    <key>NSAppleEventsUsageDescription</key>
+    <string>linfuse needs to send Apple events to control video playback.</string>
+    
+    <!-- Audio Session -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>audio</string>
+        <string>pip</string>
+    </array>
+    
+    <!-- macOS 14+ Privacy Access -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>linfuse needs access to your photo library to import videos.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>linfuse needs permission to save images to your photo library.</string>
+</dict>
+</plist>

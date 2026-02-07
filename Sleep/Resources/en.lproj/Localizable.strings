@@ -1,0 +1,61 @@
+// MARK: - Home
+"home_title" = "Sleep";
+"home_tonight" = "Tonight";
+"home_ready_sleep" = "Ready to sleep?";
+"home_start_routine" = "Start Sleep Routine";
+"home_getting_better" = "You're getting better!";
+"home_falling_asleep" = "Falling asleep";
+"home_recent_sleep" = "Recent Sleep";
+"home_see_all" = "See All";
+"home_no_records" = "No sleep records yet";
+"home_first_session" = "Complete your first session to start tracking your sleep";
+"home_get_started" = "Get Started";
+
+// MARK: - Techniques
+"select_method_title" = "Select Method";
+"start" = "Start";
+"quit" = "Quit";
+"paused" = "Paused";
+
+// Breathing
+"breathing_title" = "Breathing";
+"four7_8_name" = "4-7-8 Breathing";
+"four7_8_desc" = "For: Anxiety, quick sleep";
+"two1_6_name" = "2-1-6 Breathing";
+"two1_6_desc" = "For: Beginners, uncomfortable holding";
+
+// White Noise
+"whitenoise_title" = "White Noise";
+"whitenoise_name" = "White Noise";
+"whitenoise_desc" = "Choose: Rain, Ocean, Wind...";
+
+// Relaxation
+"relaxation_title" = "Relaxation";
+"relaxation_name" = "Progressive Muscle";
+"relaxation_desc" = "For: Body tension, stress";
+"bodyscan_name" = "Body Scan";
+"bodyscan_desc" = "For: Racing thoughts";
+
+// MARK: - Completion
+"completion_title" = "Great Job!";
+"completion_message" = "Practice completed";
+"completion_quality" = "How did you sleep?";
+"completion_save" = "Save & Continue";
+
+// MARK: - Settings
+"settings_title" = "Settings";
+"settings_goal" = "Sleep Goal";
+"settings_reminder" = "Bedtime Reminder";
+"settings_reminder_time" = "Reminder Time";
+"settings_about" = "About";
+"settings_version" = "Version";
+"settings_privacy" = "Privacy Policy";
+"settings_terms" = "Terms of Service";
+
+// MARK: - Watch
+"watch_title" = "Watch";
+"watch_connected" = "Apple Watch Connected";
+"watch_not_connected" = "Apple Watch Not Connected";
+"watch_heart_rate" = "Heart Rate";
+"watch_hrv" = "HRV";
+"watch_sync" = "Sync";

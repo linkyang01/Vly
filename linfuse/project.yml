@@ -1,0 +1,80 @@
+name: linfuse
+options:
+  bundleIdPrefix: com.linfuse
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_IDENTITY_MASK: NO
+    CODE_SIGNING_ALLOWED: NO
+    CODE_SIGNING_REQUIRED: NO
+    CODE_SIGNING_ENTITLEMENTS: ""
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    COMBINE_HIDPI_IMAGES: YES
+
+packages:
+  Kingfisher:
+    url: https://github.com/onevcat/Kingfisher.git
+    from: "7.10.0"
+  Lottie:
+    url: https://github.com/airbnb/lottie-ios.git
+    from: "4.3.0"
+
+targets:
+  linfuse:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/App
+        excludes:
+          - "**/ContentView.swift"
+      - path: Sources/ViewModels
+        excludes:
+          - "**/*Subscription*.swift"
+          - "**/ScrapingStatusViewModel.swift"
+          - "**/NetworkBrowserViewModel.swift"
+          - "**/NetworkStorageViewModel.swift"
+      - path: Sources/Models
+      - path: Sources/Utilities
+      - path: Sources/Views
+        excludes:
+          - "**/Settings/Subscription/**"
+          - "**/Settings/ScrapingSettingsView.swift"
+          - "**/Network/**"
+      - path: Sources/Services/Data
+      - path: Sources/Services/Library
+      - path: Sources/Services/Metadata
+      - path: Sources/Services/Favorites
+      - path: Sources/Services/WatchHistory
+      - path: Resources/Info.plist
+      - path: Resources/Localizations
+    resources:
+      - path: Resources/Assets.xcassets
+      - path: Resources/linfuse.xcdatamodeld
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.linfuse.app
+        PRODUCT_NAME: linfuse
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+        SUPPORTS_MACCATALYST: NO
+        OTHER_LDFLAGS: "$(inherited) -framework AVKit"
+    dependencies:
+      - package: Kingfisher
+      - package: Lottie
+    entitlements:
+      path: Resources/linfuse.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
+        com.apple.security.network.client: true
+        com.apple.security.files.user-selected.read-only: true

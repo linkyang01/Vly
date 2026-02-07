@@ -1,0 +1,59 @@
+# BeatSleep .gitignore
+
+# Xcode
+*.xcodeproj/
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+DerivedData/
+build/
+*.xcuserstate
+*.xcscmblueprint
+*.xcscheme
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# macOS
+.DS_Store
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup
+*.bak
+*.backup
+*.orig
+
+# Logs
+*.log
+logs/
+
+# Testing
+coverage/
+
+# Generated
+*.generated.swift
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Code Injection
+iOSInjectionProject/
+
+# OS specific
+Thumbs.db

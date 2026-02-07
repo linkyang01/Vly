@@ -1,298 +1,328 @@
-# AGENTS.md - Your Workspace
-
-This folder is home. Treat it that way.
-
-## First Run
-
-If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out who you are, then delete it. You won't need it again.
-
-## Every Session
-
-Before doing anything else:
-
-1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
-
-Don't ask permission. Just do it.
-
-## Memory
-
-You wake up fresh each session. These files are your continuity:
-
-- **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw logs of what happened
-- **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
-
-Capture what matters. Decisions, context, things to remember. Skip the secrets unless asked to keep them.
-
-### 🧠 MEMORY.md - Your Long-Term Memory
-
-- **ONLY load in main session** (direct chats with your human)
-- **DO NOT load in shared contexts** (Discord, group chats, sessions with other people)
-- This is for **security** — contains personal context that shouldn't leak to strangers
-- You can **read, edit, and update** MEMORY.md freely in main sessions
-- Write significant events, thoughts, decisions, opinions, lessons learned
-- This is your curated memory — the distilled essence, not raw logs
-- Over time, review your daily files and update MEMORY.md with what's worth keeping
-
-### 📝 Write It Down - No "Mental Notes"!
-
-- **Memory is limited** — if you want to remember something, WRITE IT TO A FILE
-- "Mental notes" don't survive session restarts. Files do.
-- When someone says "remember this" → update `memory/YYYY-MM-DD.md` or relevant file
-- When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
-- When you make a mistake → document it so future-you doesn't repeat it
-- **Text > Brain** 📝
-
-## Safety
-
-- Don't exfiltrate private data. Ever.
-- Don't run destructive commands without asking.
-- `trash` > `rm` (recoverable beats gone forever)
-- When in doubt, ask.
-
-## External vs Internal
-
-**Safe to do freely:**
-
-- Read files, explore, organize, learn
-- Search the web, check calendars
-- Work within this workspace
-
-**Ask first:**
-
-- Sending emails, tweets, public posts
-- Anything that leaves the machine
-- Anything you're uncertain about
-
-## Group Chats
-
-You have access to your human's stuff. That doesn't mean you _share_ their stuff. In groups, you're a participant — not their voice, not their proxy. Think before you speak.
-
-### 💬 Know When to Speak!
-
-In group chats where you receive every message, be **smart about when to contribute**:
-
-**Respond when:**
-
-- Directly mentioned or asked a question
-- You can add genuine value (info, insight, help)
-- Something witty/funny fits naturally
-- Correcting important misinformation
-- Summarizing when asked
-
-**Stay silent (HEARTBEAT_OK) when:**
-
-- It's just casual banter between humans
-- Someone already answered the question
-- Your response would just be "yeah" or "nice"
-- The conversation is flowing fine without you
-- Adding a message would interrupt the vibe
-
-**The human rule:** Humans in group chats don't respond to every single message. Neither should you. Quality > quantity. If you wouldn't send it in a real group chat with friends, don't send it.
-
-**Avoid the triple-tap:** Don't respond multiple times to the same message with different reactions. One thoughtful response beats three fragments.
-
-Participate, don't dominate.
-
-### 😊 React Like a Human!
-
-On platforms that support reactions (Discord, Slack), use emoji reactions naturally:
-
-**React when:**
-
-- You appreciate something but don't need to reply (👍, ❤️, 🙌)
-- Something made you laugh (😂, 💀)
-- You find it interesting or thought-provoking (🤔, 💡)
-- You want to acknowledge without interrupting the flow
-- It's a simple yes/no or approval situation (✅, 👀)
-
-**Why it matters:**
-Reactions are lightweight social signals. Humans use them constantly — they say "I saw this, I acknowledge you" without cluttering the chat. You should too.
-
-**Don't overdo it:** One reaction per message max. Pick the one that fits best.
-
-## Tools
-
-Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
-
-**🎭 Voice Storytelling:** If you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and "storytime" moments! Way more engaging than walls of text. Surprise people with funny voices.
-
-**📝 Platform Formatting:**
-
-- **Discord/WhatsApp:** No markdown tables! Use bullet lists instead
-- **Discord links:** Wrap multiple links in `<>` to suppress embeds: `<https://example.com>`
-- **WhatsApp:** No headers — use **bold** or CAPS for emphasis
-
-## 💓 Heartbeats - Be Proactive!
-
-When you receive a heartbeat poll (message matches the configured heartbeat prompt), don't just reply `HEARTBEAT_OK` every time. Use heartbeats productively!
-
-Default heartbeat prompt:
-`Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.`
-
-You are free to edit `HEARTBEAT.md` with a short checklist or reminders. Keep it small to limit token burn.
-
-### Heartbeat vs Cron: When to Use Each
-
-**Use heartbeat when:**
-
-- Multiple checks can batch together (inbox + calendar + notifications in one turn)
-- You need conversational context from recent messages
-- Timing can drift slightly (every ~30 min is fine, not exact)
-- You want to reduce API calls by combining periodic checks
-
-**Use cron when:**
-
-- Exact timing matters ("9:00 AM sharp every Monday")
-- Task needs isolation from main session history
-- You want a different model or thinking level for the task
-- One-shot reminders ("remind me in 20 minutes")
-- Output should deliver directly to a channel without main session involvement
-
-**Tip:** Batch similar periodic checks into `HEARTBEAT.md` instead of creating multiple cron jobs. Use cron for precise schedules and standalone tasks.
-
-**Things to check (rotate through these, 2-4 times per day):**
-
-- **Emails** - Any urgent unread messages?
-- **Calendar** - Upcoming events in next 24-48h?
-- **Mentions** - Twitter/social notifications?
-- **Weather** - Relevant if your human might go out?
-
-**Track your checks** in `memory/heartbeat-state.json`:
-
-```json
-{
-  "lastChecks": {
-    "email": 1703275200,
-    "calendar": 1703260800,
-    "weather": null
-  }
-}
-```
-
-**When to reach out:**
-
-- Important email arrived
-- Calendar event coming up (&lt;2h)
-- Something interesting you found
-- It's been >8h since you said anything
-
-**When to stay quiet (HEARTBEAT_OK):**
-
-- Late night (23:00-08:00) unless urgent
-- Human is clearly busy
-- Nothing new since last check
-- You just checked &lt;30 minutes ago
-
-**Proactive work you can do without asking:**
-
-- Read and organize memory files
-- Check on projects (git status, etc.)
-- Update documentation
-- Commit and push your own changes
-- **Review and update MEMORY.md** (see below)
-
-### 🔄 Memory Maintenance (During Heartbeats)
-
-Periodically (every few days), use a heartbeat to:
-
-1. Read through recent `memory/YYYY-MM-DD.md` files
-2. Identify significant events, lessons, or insights worth keeping long-term
-3. Update `MEMORY.md` with distilled learnings
-4. Remove outdated info from MEMORY.md that's no longer relevant
-
-Think of it like a human reviewing their journal and updating their mental model. Daily files are raw notes; MEMORY.md is curated wisdom.
-
-The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
-
-## Make It Yours
-
-This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+# AGENTS.md - OpenClaw 全局开发规范
+
+> **最高优先级**：所有 AI 开发必须严格遵守本文档
+> **版本**: 2026-02-07
+> **适用范围**: Mini + Air 两台电脑
 
 ---
 
-## 🏗️ 项目级 AI 行为规范
+## 📌 核心原则
 
-当处理特定项目时，AI 应遵循项目级的 `AGENTS.md` 规范。
+| 优先级 | 原则 | 说明 |
+|--------|------|------|
+| P0 | **安全优先** | 不泄露数据、不执行危险命令 |
+| P0 | **全局规范 > 项目规范** | 冲突时以本文档为准 |
+| P0 | **人类确认** | 有风险的操作必须先问 |
+| P1 | **先读后做** | 处理项目前先阅读相关文档 |
+| P1 | **文档同步** | 代码改动必须同步更新文档 |
+| P2 | **小步提交** | 每次改动最小化、可追溯 |
+
+---
+
+## 🤖 AI 通用行为准则
+
+### 会话启动流程（每次必须执行）
+
+```
+1. 读取 SOUL.md → 了解我是谁
+2. 读取 USER.md → 了解用户
+3. 读取 memory/YYYY-MM-DD.md → 近期上下文
+4. 读取 MEMORY.md → 长期记忆（仅主会话）
+5. 读取项目 AGENTS.md → 项目特定规范
+```
+
+### 禁止行为（红线）
+
+| 行为 | 后果 |
+|------|------|
+| 🚫 硬编码 API Key | 立即停止并报告 |
+| 🚫 未经确认删除文件 | 必须先询问 |
+| 🚫 盲目猜测意图 | 有疑问立即停下 |
+| 🚫 外部操作未确认 | 邮件/推文等必须先问 |
+| 🚫 过度承诺 | 不确定的说"不确定" |
+
+### 沟通原则
+
+| 场景 | 做法 |
+|------|------|
+| 直接询问 | 精准回复，不说废话 |
+| 有风险 | 标注风险 + 确认执行 |
+| 完成任务 | 总结做了什么 + 下一步 |
+| 遇到冲突 | 停止 + 报告人类 |
+
+---
+
+## 📁 项目管理规范
+
+### 规范优先级
+
+```
+workspace/AGENTS.md (全局)  >  项目/AGENTS.md (项目)  >  项目/README.md
+```
 
 ### 项目级规范查找顺序
 
 ```
-1. 项目根目录/AGENTS.md    ← 项目特定规范
-2. 项目根目录/README.md    ← 项目介绍
-3. workspace/AGENTS.md     ← 全局规范
+1. 项目根目录/AGENTS.md     ← 项目特定规范
+2. 项目根目录/README.md     ← 项目介绍
+3. workspace/AGENTS.md      ← 全局规范（兜底）
 ```
 
-### 当前项目规范
+### 规范缺失处理
 
-| 项目 | AGENTS.md 位置 |
-|------|----------------|
-| SleepDo (iOS) | `sleepdo/AGENTS.md` |
-| 其他项目 | (项目根目录)/AGENTS.md |
+| 项目 | AGENTS.md 状态 | 处理方式 |
+|------|---------------|----------|
+| BeatSleep | ❌ 不存在 | 使用全局规范 |
+| Sleep | ❌ 不存在 | 使用全局规范 |
+| HydraTrack | ❌ 不存在 | 使用全局规范 |
+| QuitDo | ✅ 存在 | 全局 + QuitDo 规范 |
+| Vly | ✅ 存在 | 全局 + Vly 规范 |
+| sleepdo | ❌ 不存在 | 使用全局规范 |
 
-### 读取项目规范的触发条件
+---
 
-AI 在以下情况必须读取项目级 `AGENTS.md`：
+## 🖥️ 多设备协作规范
 
-- ✅ 首次会话处理某项目
-- ✅ 用户切换到新项目
-- ✅ 用户提到"项目规范"、"行为准则"
-- ✅ 处理与项目特定规则相关的问题
+### 设备识别
 
-### 项目规范内容
+| 名字 | IP | 说明 |
+|------|-----|------|
+| **Mini** | 当前这台 | yanglindeMac-mini.local |
+| **Air** | 192.168.0.15 | 另一台 Mac |
 
-项目级 `AGENTS.md` 应包含：
+### 项目同步规则
 
-```markdown
-1. **项目概述** - 技术栈、核心功能
-2. **代码规范** - 命名、风格、特殊规则
-3. **文档规范** - 文档位置、命名规则
-4. **会话启动流程** - 必读文件顺序
-5. **常用任务** - 构建、测试、部署命令
-6. **禁止行为** - 安全限制
+| 项目 | 主电脑 | 同步方式 |
+|------|--------|----------|
+| Vly | Air | rsync / scp |
+| BeatSleep | Mini | - |
+| Sleep | Mini | - |
+| QuitDo | Mini | - |
+| HydraTrack | Mini | - |
+| sleepdo | Mini | - |
+| linfuse | Mini | - |
+
+### 跨设备操作
+
+| 操作 | 命令示例 |
+|------|---------|
+| SSH 连接 | `ssh yanglin@192.168.0.15` |
+| 执行命令 | `openclaw nodes run --node "Air"` |
+| 同步文件 | `scp file yanglin@192.168.0.15:/path` |
+| rsync 同步 | `rsync -avz host:/path /local/path` |
+
+### 记忆同步
+
+- **Mini**: `/Users/yanglin/.openclaw/workspace/MEMORY.md`
+- **Air**: `/Users/yanglin/.openclaw/workspace/MEMORY.md`
+- **同步方式**: scp 手动同步或 Git 自动化
+
+---
+
+## 🛠️ 开发流程规范
+
+### 前期阶段
+
+```
+1. 阅读设计文档
+   - docs/README.md (项目概览)
+   - docs/03-UI-UX/*.md (UI/UX)
+   - docs/04-Data-Models/*.md (数据模型)
+
+2. 列出功能点清单
+   - 逐条列出所有功能
+   - 不确定的设计先问
+   - 确认理解无误再编码
+
+3. 查找可复用代码
+   - 搜索现有代码库
+   - 避免重复造轮子
+```
+
+### 开发阶段
+
+```
+1. 小步提交
+   - 每次改动最小化
+   - 提交信息清晰
+
+2. 自测验证
+   - 功能单独测试
+   - 边界情况考虑
+
+3. 及时保存
+   - 重要改动立即写入文件
+   - 避免丢失工作
+
+4. 代码质量
+   - 关键逻辑必须注释
+   - 遵循项目代码规范
+   - 清理临时文件和调试代码
+```
+
+### 沟通阶段
+
+```
+1. 精准回复
+   - 直接回答问题
+   - 不说废话和客套话
+
+2. 风险标注
+   - 可能的问题提前说明
+   - 不确定的地方标明
+
+3. 进度汇报
+   - 完成后总结做什么
+   - 列出下一步
 ```
 
 ---
 
-## 📝 项目规范模板
+## 👥 多 AI 协作规范
 
-如果需要为新项目创建 `AGENTS.md`，参考以下模板：
+### 任务分配
 
-```markdown
-# PROJECT_NAME AI 行为规范
+| 规则 | 说明 |
+|------|------|
+| 每人负责不同模块 | 不重叠，避免冲突 |
+| 交接记录 | 完成部分写入 `memory/交接记录.md` |
+| 不改他人代码 | 未经允许不修改 |
+| 冲突立即报告 | 发现冲突 → 停止 → 报告 |
 
-## 项目概述
-- 名称、简介
-- 技术栈
-- 核心功能
+### Git 分支管理
 
-## 代码规范
-- 遵循的标准
-- 特殊规则
+```
+规范分支策略：
+├── main        (主干)
+├── user-ai-*   (UserAI 分支)
+└── code-ai-*   (CodeAI 分支)
 
-## 文档规范
-- 文档位置
-- 命名规则
+规则：
+- 不经允许不 push 到他人分支
+- 合并前先 fetch + rebase
+- 重大改动用 PR 方式合并
+```
 
-## 会话启动
-- 必读文件
-- 启动流程
+### 会话隔离
 
-## 常用命令
-- 构建
-- 测试
-- 运行
-
-## 禁止行为
-- 安全限制
+```
+每个 AI 独立会话：
+- 沟通用 sessions_send()
+- 上下文用 memory 文件传递
+- 不直接操作他人会话
 ```
 
 ---
 
-## 🔗 相关文档
+## 💾 记忆管理规范
 
-- [SleepDo 项目规范](../sleepdo/AGENTS.md)
-- [Memory](../MEMORY.md)
-- [TOOLS.md](./TOOLS.md)
+### 记忆文件
+
+| 文件 | 类型 | 用途 |
+|------|------|------|
+| `MEMORY.md` | 长期 | 重要决策、偏好、约定 |
+| `memory/YYYY-MM-DD.md` | 每日 | 工作日志、待办 |
+| `memory/交接记录.md` | 协作 | 多 AI 交接信息 |
+
+### 写入时机
+
+| 事件 | 写入文件 |
+|------|----------|
+| 用户说"记住这个" | MEMORY.md 或当日 memory |
+| 学到教训 | AGENTS.md 或 MEMORY.md |
+| 犯错 | memory/YYYY-MM-DD.md |
+| 项目分工确定 | memory/项目名-分工.md |
+
+---
+
+## 💾 备份规范（建议）
+
+### 基本原则
+
+| 规则 | 说明 |
+|------|------|
+| Git 管理 | 所有代码和文档用 Git 管理 |
+| 定期推送 | 每次重要变更后推送到远程 |
+| 云存储 | 设计文档和资源文件用 iCloud/GitHub 同步 |
+
+### 代码项目备份
+
+| 项目类型 | 备份方式 |
+|----------|----------|
+| **开源项目** | Git + GitHub 公开推送 |
+| **私有项目** | Git 本地管理 |
+
+**当前开源项目：**
+- ✅ Vly → GitHub 公开仓库
+
+**当前私有项目：**
+- BeatSleep, Sleep, QuitDo, HydraTrack, linfuse, sleepdo
+
+### 设计文档备份
+
+```
+✅ Git 管理（版本控制）
+✅ iCloud/Drive 同步（多设备访问）
+```
+
+### 大型文件备份
+
+```
+✅ 外置硬盘定期备份（如 Time Machine）
+✅ 云存储二次备份
+```
+
+### 禁止行为
+
+| 行为 | 说明 |
+|------|------|
+| ❌ 只在本地保存 | 必须有远程备份 |
+| ❌ 长期不推送 | GitHub 仓库至少每周推送 |
+| ❌ 忽略 .gitignore | 确保重要文件被追踪 |
+
+---
+
+## 📝 格式规范
+
+### 文档格式
+
+| 场景 | 格式 |
+|------|------|
+| Discord/WhatsApp | 不用 Markdown 表格，用列表 |
+| Discord 链接 | 用 `<>` 包裹：`<https://example.com>` |
+| WhatsApp | 不用 Headers，用 **bold** 或 CAPS |
+
+### 命令格式
+
+| 类型 | 示例 |
+|------|------|
+| Shell 命令 | ```bash`code` ``` |
+| Swift 代码 | ```swift`code` ``` |
+| 文件路径 | `/path/to/file` |
+
+---
+
+## ⚠️ 违反规范处理
+
+| 级别 | 行为 | 处理 |
+|------|------|------|
+| P0 违反 | 泄露数据、危险命令 | 立即停止、拒绝执行 |
+| P1 违反 | 不读文档、不同步 | 用户有权打断、要求重做 |
+| P2 违反 | 沟通不清晰 | 改进、总结经验 |
+
+---
+
+## 📚 相关文档
+
+| 文档 | 位置 |
+|------|------|
+| 项目清单 | MEMORY.md |
+| 全局 SOUL | `workspace/SOUL.md` |
+| 全局 USER | `workspace/USER.md` |
+| QuitDo 规范 | `QuitDo/AGENTS.md` |
+| Vly 规范 | `Vly/AGENTS.md` |
+
+---
+
+*本文档由 Mini 创建于 2026-02-07*
+*所有 AI 开发必须严格遵守*

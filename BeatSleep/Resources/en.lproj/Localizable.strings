@@ -1,0 +1,397 @@
+// MARK: - Onboarding
+"onboarding_welcome_title" = "Welcome to BeatSleep";
+"onboarding_welcome_subtitle" = "AI-Powered Sleep Improvement Assistant";
+"onboarding_welcome_description" = "Through scientifically proven breathing exercises, sound therapy, and personalized suggestions, help you get better sleep.";
+"onboarding_478_title" = "4-7-8 Breathing";
+"onboarding_478_subtitle" = "Harvard Medical School Certified";
+"onboarding_478_description" = "Just 3 minutes to quickly relax your body and mind.";
+"onboarding_sounds_title" = "Personalized Sounds";
+"onboarding_sounds_subtitle" = "30+ Sleep Sounds";
+"onboarding_sounds_description" = "Choose the best sleep environment for you.";
+"onboarding_plan_title" = "7-Day Improvement Plan";
+"onboarding_plan_subtitle" = "Scientific Conversion Path";
+"onboarding_plan_description" = "Build healthy sleep habits with daily challenges.";
+"onboarding_continue" = "Continue";
+"onboarding_skip" = "Skip";
+"onboarding_start" = "Start Improving Sleep";
+
+// MARK: - Breathing
+"breathing_inhale" = "Inhale";
+"breathing_hold" = "Hold";
+"breathing_exhale" = "Exhale";
+"breathing_inhale_instruction" = "Breathe in";
+"breathing_hold_instruction" = "Hold";
+"breathing_exhale_instruction" = "Breathe out";
+"breathing_ready" = "Ready";
+"breathing_start" = "Start";
+"breathing_pause" = "Pause";
+"breathing_resume" = "Resume";
+"breathing_stop" = "Stop";
+"breathing_complete" = "Complete!";
+"breathing_great_job" = "Great Job!";
+"breathing_done" = "Done";
+"breathing_give_up" = "Give Up";
+"breathing_duration" = "Duration";
+"breathing_improvement" = "Improvement";
+"breathing_min_faster" = "min faster";
+
+// MARK: - Techniques
+"techniques_title" = "Techniques";
+"techniques_choose" = "Choose Your Method";
+"techniques_find_best" = "Find what works best for you";
+"techniques_min" = "min";
+"seconds" = "seconds";
+"techniques_duration" = "Duration";
+"techniques_difficulty" = "Difficulty";
+
+// MARK: - Home
+"home_title" = "BeatSleep";
+"home_tonight" = "Tonight";
+"home_ready_sleep" = "Ready to Sleep?";
+"home_start_routine" = "Start Sleep Routine";
+"home_getting_better" = "You're getting better!";
+"home_falling_asleep" = "You're falling asleep";
+"home_recent_sleep" = "Recent Sleep";
+"home_see_all" = "See All";
+"home_no_records" = "No sleep records yet";
+"home_first_session" = "Start your first sleep session tonight";
+"home_get_started" = "Get Started";
+
+// MARK: - Settings
+"settings_title" = "Settings";
+"settings_about" = "About";
+"settings_version" = "Version";
+"settings_privacy" = "Privacy Policy";
+"settings_terms" = "Terms of Service";
+"settings_contact" = "Contact Us";
+"settings_language" = "Language";
+"settings_notifications" = "Notifications";
+"settings_reminder" = "Sleep Reminder";
+"settings_reminder_time" = "Reminder Time";
+"settings_data" = "Data";
+"settings_export" = "Export Data";
+"settings_clear" = "Clear Data";
+
+// MARK: - Paywall
+"paywall_unlock" = "Unlock Full Features";
+"paywall_used_days" = "You've used the app for";
+"paywall_days" = "days";
+"paywall_ready" = "Ready to experience the best sleep?";
+"paywall_your_results" = "Your 7-Day Results";
+"paywall_continue_unlock" = "Keep your sleep progress by unlocking full features!";
+"paywall_monthly" = "Monthly";
+"paywall_annual" = "Yearly";
+"paywall_lifetime" = "Lifetime";
+"paywall_per_month" = "/mo";
+"paywall_per_year" = "/yr";
+"paywall_start_trial" = "Start Free Trial";
+"paywall_subscribe_monthly" = "Subscribe Monthly";
+"paywall_subscribe_annual" = "Subscribe Yearly";
+"paywall_buy_lifetime" = "One-Time Purchase";
+"paywall_restore" = "Restore Purchase";
+"paywall_agree_terms" = "By continuing, you agree to";
+"paywall_terms" = "Terms of Service";
+"paywall_and" = "and";
+"paywall_privacy" = "Privacy Policy";
+
+// MARK: - Days
+"day_1" = "1 day";
+"day_n" = "days";
+
+// MARK: - Common
+"ok" = "OK";
+"cancel" = "Cancel";
+"save" = "Save";
+"delete" = "Delete";
+"confirm" = "Confirm";
+"loading" = "Loading...";
+"error" = "Error";
+"retry" = "Retry";
+"off" = "Off";
+"on" = "On";
+
+// MARK: - Home
+"home_title" = "BeatSleep";
+"home_tonight" = "Tonight";
+"home_ready_sleep" = "Ready to sleep?";
+"home_start_routine" = "Start Sleep Routine";
+"home_getting_better" = "You're getting better!";
+"home_falling_asleep" = "You're falling asleep";
+"home_recent_sleep" = "Recent Sleep";
+"home_see_all" = "See All";
+"home_no_records" = "No sleep records yet";
+"home_first_session" = "Start your first sleep session tonight";
+"home_get_started" = "Get Started";
+
+// MARK: - Settings
+"settings_title" = "Settings";
+"settings_sleep_goal" = "Sleep Goal";
+"settings_target_duration" = "Target Sleep Duration";
+"settings_hours" = "hours";
+"settings_reminder" = "Reminder";
+"settings_bedtime_reminder" = "Bedtime Reminder";
+"settings_time" = "Time";
+"settings_feedback" = "Feedback";
+"settings_sound_effects" = "Sound Effects";
+"settings_haptic_feedback" = "Haptic Feedback";
+"settings_subscription" = "Subscription";
+"settings_upgrade_pro" = "Upgrade to Pro";
+"settings_days_left" = "days left";
+"settings_about" = "About";
+"settings_version" = "Version";
+"settings_privacy_policy" = "Privacy Policy";
+"settings_terms_service" = "Terms of Service";
+"settings_contact_support" = "Contact Support";
+
+// MARK: - Subscription
+"settings_unlock_full" = "Unlock Full Access";
+"settings_most_beatsleep" = "Get the most out of BeatSleep";
+"settings_monthly" = "Monthly";
+"settings_yearly" = "Yearly";
+"settings_cancel_anytime" = "Cancel anytime";
+"settings_save_33" = "Save 33%";
+"settings_best_value" = "Best Value";
+
+// MARK: - Techniques
+"techniques_title" = "Techniques";
+"techniques_choose" = "Choose Your Method";
+"techniques_find_best" = "Find what works best for you";
+"techniques_min" = "min";
+"techniques_duration" = "Duration";
+"techniques_difficulty" = "Difficulty";
+"recommended_for" = "Recommended for";
+"difficulty_medium" = "Medium";
+"difficulty_easy" = "Easy";
+"difficulty_effortless" = "Effortless";
+"breathing_stop" = "Stop";
+"breathe_dot" = "Breathe...";
+
+// MARK: - Watch Settings
+"settings_haptic_alerts" = "Haptic Alerts";
+"settings_sound_alerts" = "Sound Alerts";
+
+// MARK: - Watch Data
+"watch_data_title" = "Watch Data";
+"watch_connected" = "Apple Watch Connected";
+"watch_not_connected" = "Watch Not Connected";
+"watch_syncing" = "Syncing data...";
+"watch_tap_connect" = "Tap to connect";
+"watch_realtime" = "Real-time";
+"watch_live" = "Live";
+"watch_heart_rate" = "Heart Rate";
+"watch_bpm" = "BPM";
+"watch_hrv" = "HRV";
+"watch_ms" = "ms";
+"watch_sleep_ready" = "Sleep Ready";
+"watch_today_trend" = "Today's Trend";
+"watch_start" = "Start";
+"watch_min" = "Min";
+"watch_current" = "Current";
+"watch_stop" = "Stop";
+"watch_sync" = "Sync";
+"watch_pair" = "Pair Your Apple Watch";
+"watch_open_app" = "Open BeatSleep on your Watch to start syncing data.";
+"watch_how_connect" = "How to Connect";
+"watch_connect_title" = "Connect Your Apple Watch";
+"watch_help_step1" = "Open Watch App";
+"watch_help_step1_desc" = "Open the BeatSleep app on your Apple Watch";
+"watch_help_step2" = "Keep Nearby";
+"watch_help_step2_desc" = "Keep your iPhone and Apple Watch close together";
+"watch_help_step3" = "Wait for Connection";
+"watch_help_step3_desc" = "The connection will establish automatically";
+"watch_help_step4" = "Grant Permissions";
+"watch_help_step4_desc" = "Allow Heart Rate and HealthKit access when prompted";
+"watch_done" = "Done";
+
+// MARK: - Therapy
+"therapy_ready" = "Ready";
+"therapy_start" = "Start";
+"therapy_stop" = "Stop";
+"therapy_playing" = "Playing...";
+"therapy_remaining" = "Remaining";
+"therapy_progressive" = "Progressive Muscle Relaxation";
+"therapy_bodyscan" = "Body Scan";
+
+// MARK: - Duration Picker
+"duration_title" = "Set Duration";
+"duration_preset" = "Recommended";
+"duration_custom" = "Custom";
+"duration_minutes" = "min";
+"duration_selected" = "Selected";
+"duration_cancel" = "Cancel";
+"duration_save" = "Save";
+
+// MARK: - White Noise
+"settings_lifetime" = "Lifetime";
+"settings_onetime_payment" = "One-time payment";
+"settings_start_trial" = "Start Free Trial";
+"settings_free_then" = "7 days free, then";
+
+// MARK: - Paywall
+"paywall_unlock" = "Unlock Full Features";
+"paywall_used_days" = "You've used the app for";
+"paywall_days" = "days";
+"paywall_ready" = "Ready to experience the best sleep?";
+"paywall_your_results" = "Your 7-Day Results";
+"paywall_continue_unlock" = "Keep your sleep progress by unlocking full features!";
+"paywall_monthly" = "Monthly";
+"paywall_annual" = "Yearly";
+"paywall_lifetime" = "Lifetime";
+"paywall_monthly_price" = "$4.99/mo";
+"paywall_annual_price" = "$39.99/yr";
+"paywall_lifetime_price" = "$99.99";
+"paywall_annual_original" = "$59.88";
+"paywall_lifetime_original" = "$239.52";
+"paywall_annual_savings" = "Save 33%";
+"paywall_lifetime_savings" = "Save 58%";
+"paywall_subscribe_monthly" = "Subscribe Monthly";
+"paywall_subscribe_annual" = "Subscribe Yearly";
+"paywall_buy_lifetime" = "One-Time Purchase";
+"paywall_restore" = "Restore Purchase";
+"paywall_agree_terms" = "By continuing, you agree to";
+"paywall_terms" = "Terms of Service";
+"paywall_and" = "and";
+"paywall_privacy" = "Privacy Policy";
+"paywall_feature_sounds" = "All sounds & therapy";
+"paywall_feature_watch" = "Apple Watch Integration";
+"paywall_feature_hrv" = "Real-time HRV Tracking";
+"paywall_feature_stories" = "Unlimited Sleep Stories";
+"paywall_feature_trial" = "7-Day Free Trial";
+"paywall_streak_days" = "Streak Days";
+"paywall_total_time" = "Total Time";
+"paywall_hrv_improvement" = "HRV Improvement";
+"paywall_lifetime_perks" = "Lifetime Access";
+"paywall_lifetime_updates" = "Lifetime Updates";
+"paywall_lifetime_priority" = "Priority Support";
+
+// MARK: - Techniques
+"technique_478" = "4-7-8 Breathing";
+"technique_pmr" = "Progressive Muscle Relaxation";
+"technique_bodyscan" = "Body Scan";
+"technique_216" = "2-1-6 Breathing";
+"technique_whitenoise" = "White Noise";
+
+"technique_478_desc" = "Harvard Medical School certified breathing method. Breathe in for 4 seconds, hold for 7 seconds, and exhale for 8 seconds to help you fall asleep quickly.";
+"technique_pmr_desc" = "Tense and relax each muscle group from feet to head, releasing body tension.";
+"technique_bodyscan_desc" = "Scan your body from feet to head, identifying and releasing areas of tension.";
+"technique_216_desc" = "Simplified breathing: 2 seconds inhale, 1 second hold, 6 seconds exhale. Perfect for beginners.";
+"technique_whitenoise_desc" = "White noise masks sudden environmental sounds, creating a stable sleep environment.";
+
+"technique_478_recommended" = "Anxiety, need to fall asleep quickly";
+"technique_pmr_recommended" = "Tense muscles, high stress";
+"technique_bodyscan_recommended" = "Racing thoughts, can't stop";
+"technique_216_recommended" = "Beginners, uncomfortable holding breath";
+"technique_whitenoise_recommended" = "Noisy environment, need noise masking";
+
+// MARK: - White Noise
+"white_noise_title" = "White Noise";
+"white_noise_subtitle" = "Choose your favorite sound";
+"playing_now" = "Playing now";
+
+// Sound names
+"rain_name" = "Rain";
+"ocean_name" = "Ocean";
+"wind_name" = "Wind";
+"fire_name" = "Fireplace";
+"forest_name" = "Forest";
+"river_name" = "River";
+
+// Sound descriptions
+"rain_desc" = "Soft rain sounds to mask sudden noises";
+"ocean_desc" = "Rhythmic ocean waves";
+"wind_desc" = "Gentle breeze";
+"fire_desc" = "Warm fireplace ambiance";
+"forest_desc" = "Natural forest atmosphere";
+"river_desc" = "Calm flowing water";
+
+"white_noise_select" = "Select Sound";
+"white_noise_play" = "Play";
+"white_noise_stop" = "Stop";
+
+"settings_onetime_payment" = "One-time Payment";
+
+"play" = "Play";
+"pause" = "Pause";
+"playing" = "Playing";
+"play_with_duration" = "Play %@ min";
+
+"play_min" = "Play";
+"min" = "min";
+
+"progressive_name" = "Progressive Relaxation";
+"progressive_desc" = "Tense and relax muscle groups";
+"bodyscan_name" = "Body Scan";
+"bodyscan_desc" = "Relaxation scan from feet to head";
+"background_sound" = "Background Sound";
+"none" = "None";
+"guide_playing" = "Playing guide...";
+
+"notification_title" = "Bedtime Reminder";
+"notification_body" = "Time for bed! Try a breathing exercise 🌙";
+
+// MARK: - Watch
+"watch_data" = "Heart Rate";
+"watch_connected" = "Connected";
+"watch_disconnected" = "Disconnected";
+"watch_trend" = "Today's Trend";
+"watch_avg_hr" = "Avg HR";
+"watch_samples" = "Samples";
+"watch_sleep_readiness" = "Sleep Readiness";
+"watch_pair_needed" = "Pair Needed";
+"watch_open_phone" = "Open BeatSleep on your iPhone to pair";
+"breathe_in" = "Breathe In";
+"breathe_hold" = "Hold";
+"breathe_out" = "Breathe Out";
+"breathe_dot" = "Follow the rhythm";
+
+// MARK: - Completion
+"completion_great_job" = "Great Job!";
+"completion_session_done" = "Session Complete";
+"completion_how_long" = "How long did it take to fall asleep?";
+"completion_time_to_sleep" = "Time to sleep";
+"completion_quality" = "Sleep Quality";
+"completion_save" = "Save Record";
+"completion_saved" = "Saved!";
+
+// MARK: - Good Night
+"goodnight_title" = "Good Night";
+"goodnight_message" = "Sweet Dreams";
+"goodnight_closing" = "Closing in";
+
+"notification_review_title" = "Good Morning! How did you sleep?";
+"notification_review_body" = "Open BeatSleep to view last night's sleep data";
+"notification_review_open" = "View Details";
+"notification_review_later" = "Later";
+
+// MARK: - Sleep Review
+"review_title" = "Sleep Review";
+"review_subtitle" = "Combined with Apple Watch data";
+"review_loading" = "Loading sleep data...";
+"review_sleep_times" = "Sleep Times";
+"review_bedtime" = "Bedtime";
+"review_waketime" = "Wake Time";
+"review_statistics" = "Sleep Statistics";
+"review_total_sleep" = "Total Sleep";
+"review_deep_sleep" = "Deep Sleep";
+"review_avg_hr" = "Avg HR";
+"review_heart_rate_trend" = "Heart Rate Trend";
+"review_before_sleep" = "Before";
+"review_after_sleep" = "After";
+"review_quality" = "Sleep Quality";
+"review_save" = "Save Record";
+"review_skip" = "Skip";
+"review_no_watch_data" = "No Apple Watch sleep data detected\nMake sure your watch is paired and worn during sleep";
+
+// MARK: - Sleep Review
+"review_title" = "Sleep Review";
+"review_subtitle" = "Data from Apple Watch";
+"review_loading" = "Loading sleep data...";
+"review_sleep_times" = "Sleep Times";
+"review_bedtime" = "Bedtime";
+"review_waketime" = "Wake Time";
+"review_total_sleep" = "Total Sleep";
+"review_deep_sleep" = "Deep";
+"review_light_sleep" = "Light";
+"review_quality" = "Sleep Quality";
+"review_save" = "Save Record";
+"review_skip" = "Skip";

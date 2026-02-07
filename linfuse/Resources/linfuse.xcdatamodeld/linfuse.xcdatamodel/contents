@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="NO" userDefinedModelVersionIdentifier="">
+    
+    <!-- Movie Entity -->
+    <entity name="Movie" representedClassName="Movie" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="originalTitle" optional="YES" attributeType="String"/>
+        <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="releaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="runtime" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="voteCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="posterPath" optional="YES" attributeType="String"/>
+        <attribute name="backdropPath" optional="YES" attributeType="String"/>
+        <attribute name="tmdbID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO"/>
+        
+        <!-- File information -->
+        <attribute name="fileURL" attributeType="URI"/>
+        <attribute name="fileSize" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="duration" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="resolution" optional="YES" attributeType="String"/>
+        <attribute name="codec" optional="YES" attributeType="String"/>
+        <attribute name="fileName" attributeType="String"/>
+        
+        <!-- Watch status -->
+        <attribute name="currentPosition" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="isWatched" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="watchCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastWatchedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        
+        <!-- Favorites -->
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="tags" optional="YES" attributeType="String"/>
+        
+        <!-- Metadata -->
+        <attribute name="metadataFetched" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="addedDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sortTitle" optional="YES" attributeType="String"/>
+        
+        <!-- Relationships -->
+        <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Genre" inverseName="movies" inverseEntity="Genre"/>
+        <relationship name="cast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CastMember" inverseName="movie" inverseEntity="CastMember"/>
+        <relationship name="crew" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CrewMember" inverseName="movie" inverseEntity="CrewMember"/>
+        <relationship name="watchHistory" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WatchHistoryEntry" inverseName="movie" inverseEntity="WatchHistoryEntry"/>
+    </entity>
+    
+    <!-- Genre Entity -->
+    <entity name="Genre" representedClassName="Genre" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="tmdbID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO"/>
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="genres" inverseEntity="Movie"/>
+    </entity>
+    
+    <!-- CastMember Entity -->
+    <entity name="CastMember" representedClassName="CastMember" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="personID" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="character" optional="YES" attributeType="String"/>
+        <attribute name="profilePath" optional="YES" attributeType="String"/>
+        <attribute name="order" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="cast" inverseEntity="Movie"/>
+    </entity>
+    
+    <!-- CrewMember Entity -->
+    <entity name="CrewMember" representedClassName="CrewMember" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="personID" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="job" optional="YES" attributeType="String"/>
+        <attribute name="department" optional="YES" attributeType="String"/>
+        <attribute name="profilePath" optional="YES" attributeType="String"/>
+        <attribute name="order" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="crew" inverseEntity="Movie"/>
+    </entity>
+    
+    <!-- WatchHistoryEntry Entity -->
+    <entity name="WatchHistoryEntry" representedClassName="WatchHistoryEntry" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="position" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="duration" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="watchHistory" inverseEntity="Movie"/>
+    </entity>
+    
+    <!-- FavoritesList Entity -->
+    <entity name="FavoritesList" representedClassName="FavoritesList" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="icon" attributeType="String" defaultValueString="star.fill"/>
+        <attribute name="color" attributeType="String" defaultValueString="yellow"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isSmartList" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="criteriaData" optional="YES" attributeType="Binary"/>
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie"/>
+    </entity>
+
+    <!-- CustomTag Entity -->
+    <entity name="CustomTag" representedClassName="CustomTag" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="icon" attributeType="String" defaultValueString="tag.fill"/>
+        <attribute name="color" attributeType="String" defaultValueString="blue"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="customTags" inverseEntity="Movie"/>
+    </entity>
+
+    <!-- SmartFilter Entity -->
+    <entity name="SmartFilter" representedClassName="SmartFilter" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="criteriaData" optional="YES" attributeType="Binary"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+
+    <!-- MovieCollection Entity -->
+    <entity name="MovieCollection" representedClassName="MovieCollection" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="description" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="collections" inverseEntity="Movie"/>
+    </entity>
+
+    <!-- Update Movie Entity to add customTags and collections relationships -->
+    <entity name="Movie" representedClassName="Movie" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="originalTitle" optional="YES" attributeType="String"/>
+        <attribute name="overview" optional="YES" attributeType="String"/>
+        <attribute name="releaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="runtime" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rating" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="voteCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="posterPath" optional="YES" attributeType="String"/>
+        <attribute name="backdropPath" optional="YES" attributeType="String"/>
+        <attribute name="tmdbID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO"/>
+        
+        <!-- File information -->
+        <attribute name="fileURL" attributeType="URI"/>
+        <attribute name="fileSize" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="duration" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="resolution" optional="YES" attributeType="String"/>
+        <attribute name="codec" optional="YES" attributeType="String"/>
+        <attribute name="fileName" attributeType="String"/>
+        
+        <!-- Watch status -->
+        <attribute name="currentPosition" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="isWatched" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="watchCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastWatchedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        
+        <!-- Favorites -->
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="tags" optional="YES" attributeType="String"/>
+        
+        <!-- Metadata -->
+        <attribute name="metadataFetched" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="addedDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="sortTitle" optional="YES" attributeType="String"/>
+        
+        <!-- Relationships -->
+        <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Genre" inverseName="movies" inverseEntity="Genre"/>
+        <relationship name="cast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CastMember" inverseName="movie" inverseEntity="CastMember"/>
+        <relationship name="crew" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CrewMember" inverseName="movie" inverseEntity="CrewMember"/>
+        <relationship name="watchHistory" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WatchHistoryEntry" inverseName="movie" inverseEntity="WatchHistoryEntry"/>
+        <relationship name="customTags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CustomTag" inverseName="movies" inverseEntity="CustomTag"/>
+        <relationship name="collections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovieCollection" inverseName="movies" inverseEntity="MovieCollection"/>
+    </entity>
+    
+</model>

@@ -1,3 +1,43 @@
+# OpenClaw 多设备命名约定（2026-02-07）
+
+| 名字 | IP | 说明 |
+|------|-----|------|
+| **Mini** | 当前这台（yanglindeMac-mini.local） | 我运行的电脑 |
+| **Air** | 192.168.0.15 | 另一台 Mac，通过 SSH/OpenClaw 节点控制 |
+
+---
+
+## 项目清单（2026-02-07）
+
+| 项目 | 优先级 | 状态 | 说明 |
+|------|--------|------|------|
+| **BeatSleep** | ⭐⭐⭐ 最重要 | 开发中 | iOS 助眠 App |
+| **Vly** | ⭐⭐ 次重要 | 开发中 | 开源 IINA 播放器，为 linfuse 开发 |
+| **Sleep** | 验证用 | 开发中 | BeatSleep 的克隆，验证用 |
+| **HydraTrack** | 预备 | 未开始 | 已完成调研和设计 |
+| **QuitDo** | 预备 | 未开始 | 已完成调研和设计 |
+| **linfuse** | 未来 | 受阻 | 未来重要项目，因困难暂停 |
+| **sleepdo** | 停滞 | 设计方向不明 | 设计方向不明，未来不确定 |
+
+### 同步规则
+- **Vly** → 开源项目 → 以 Air 为准，GitHub 同步
+- **BeatSleep** → 私有项目 → 以 Mini 为准
+- **Sleep** → 私有项目 → 以 Mini 为准
+- **QuitDo** → 私有项目 → 以 Mini 为准
+- **HydraTrack** → 私有项目 → 以 Mini 为准
+- **linfuse** → 私有项目 → 以 Mini 为准
+- **sleepdo** → 私有项目 → 以 Mini 为准
+
+---
+
+## GitHub 仓库（开源项目）
+
+| 项目 | 仓库地址 | 状态 |
+|------|----------|------|
+| Vly | https://github.com/linkyang01/Vly | 开源 |
+
+---
+
 # SleepDo 设计文档
 
 > **重要**: 此文件内容已与 `sleepdo/README.md` 和 `sleepdo/docs/` 同步更新。
@@ -97,4 +137,115 @@
 
 ---
 
-*最后更新: 2026-02-05*
+## BeatSleep 设计决策（2026-02-06）
+
+### 1. 产品定位
+- **以听为主，视觉为辅** - 用户闭眼助眠，无需看屏幕
+- 语音引导 + 可选动画
+
+### 2. 五种方法的声音设计
+
+| 方法 | 语音引导 | 背景音 | 实现方式 |
+|------|---------|-------|---------|
+| **4-7-8 呼吸** | ✅ TTS 实时播报 | ❌ | 吸气-屏息-呼气语音提示 |
+| **2-1-6 呼吸** | ✅ TTS 实时播报 | ❌ | 吸气-屏息-呼气语音提示 |
+| **渐进式肌肉放松** | 🎤 真人录音（待配音） | ✅ 可选白噪音 | 复用现有 6 种白噪音 |
+| **身体扫描** | 🎤 真人录音（待配音） | ✅ 可选白噪音 | 复用现有 6 种白噪音 |
+| **白噪音** | ❌ | ✅ 已完成 | 6 种声音 + 定时 |
+
+### 3. 呼吸法 TTS 脚本
+
+**4-7-8 呼吸法**：
+- 准备: "准备开始 4-7-8 呼吸法"
+- 吸气: "吸气... 1... 2... 3... 4"
+- 屏息: "屏息... 5... 6... 7"
+- 呼气: "呼气... 1... 2... 3... 4... 5... 6... 7... 8"
+- 结束: "练习完成，祝你晚安"
+
+**2-1-6 呼吸法**：
+- 准备: "准备开始 2-1-6 呼吸法"
+- 吸气: "吸气... 1... 2"
+- 屏息: "屏息... 1"
+- 呼气: "呼气... 1... 2... 3... 4... 5... 6"
+- 结束: "练习完成，祝你晚安"
+
+### 4. 白噪音设计 ✅ 已完成
+
+**6 种声音**：
+| 声音 | 文件名 | 颜色 | 图标 |
+|------|--------|------|------|
+| 雨声 | rain.mp3 | #3B82F6 | cloud.rain |
+| 海浪 | ocean.mppl | #06B6D4 | water.waves |
+| 风声 | wind.mp3 | #14B8A6 | wind |
+| 壁炉 | fire.mp3 | #F97316 | flame.fill |
+| 森林 | forest.mp3 | #22C55E | leaf |
+| 河流 | river.mp3 | #3B82F6 | drop.fill |
+
+**使用流程**：
+1. 选择声音（6选1）
+2. 选择时长（5/10/15/30/60分钟）
+3. 点击播放 → 进入播放页面
+4. 播放页面：波形动画 + 倒计时 + 暂停/停止
+
+**文件位置**：`Resources/sounds/`（folder reference）
+
+### 5. 待开发功能
+
+| 功能 | 状态 | 说明 |
+|------|------|------|
+| 4-7-8 TTS 语音 | 待开发 | `BreathingPlayer` + `AVSpeechSynthesizer` |
+| 2-1-6 TTS 语音 | 待开发 | 复用 `BreathingPlayer` |
+| 呼吸法动画 | 待开发 | 圆形呼吸动画 |
+| 渐进式引导语 | 待配音 | 需要专业配音 |
+| 身体扫描引导语 | 待配音 | 需要专业配音 |
+
+### 6. 设计文档
+- `BeatSleep/docs/03-UI-UX/BREATHING_WHITENOISE_DESIGN.md`
+
+---
+
+*最后更新: 2026-02-06*
+
+---
+
+## BeatSleep 项目本地化（2026-02-06）
+
+### 项目信息
+- **项目路径**: `/Users/yanglin/.openclaw/workspace/BeatSleep/`
+- **Bundle ID**: `com.beatsleep.app`
+- **模拟器**: iPhone Air (iOS 26.2)
+
+### 本地化状态
+已完成所有页面的双语本地化：
+- ✅ OnboardingView（引导页）
+- ✅ SleepHomeView（首页）
+- ✅ TechniquesView（方法选择）
+- ✅ BreathingSessionView（呼吸练习）
+- ✅ SettingsView（设置）
+- ✅ PaywallView（付费墙）
+- ✅ WatchHomeView、WatchTechniquesView、WatchSettingsView
+- ✅ WatchDataView（Watch 数据页面）
+- ✅ PlaceholderTherapyView（渐进/身体/白噪音页面）
+
+### 技术实现
+- 使用 `.localized()` 扩展方法
+- Localizable.strings 文件管理所有翻译
+- 系统语言为简体中文时显示中文，其他语言显示英文
+
+### 新增本地化键值
+- `therapy_ready` = "准备" / "Ready"
+- `therapy_start` = "开始" / "Start"
+- `therapy_stop` = "停止" / "Stop"
+- `therapy_playing` = "播放中..." / "Playing..."
+
+### 图标修复
+- 身体扫描图标：`figure.scan` → `figure.stand`（iOS 26 兼容）
+
+### 关键文件
+- 英文字符串：`BeatSleep/Resources/en.lproj/Localizable.strings`
+- 中文字符串：`BeatSleep/Resources/zh-Hans.lproj/Localizable.strings`
+- 扩展方法：`BeatSleep/Sources/Extensions/String+Localization.swift`
+
+---
+
+*最后更新: 2026-02-06*

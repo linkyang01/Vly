@@ -1,0 +1,23 @@
+# Build outputs
+build/
+DerivedData/
+*.xcbuilddata/
+*.xcuserstate
+
+# IDE
+*.xcuserdatad
+*.xcworkspace/xcuserdata/
+.project/
+.pyc
+__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated
+*.dia
+*.o
+*.d
+.swiftdeps
+.swiftconstvalues

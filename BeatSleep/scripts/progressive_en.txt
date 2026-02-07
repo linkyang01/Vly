@@ -1,0 +1,32 @@
+# Progressive Muscle Relaxation Guide (10 minutes)
+
+## Speed Requirements
+- Speed: Very slow (recommend 0.5x)
+- Pause between sentences: 3-5 seconds
+- Tone: Soft, soothing, warm
+
+---
+
+## Text (copy to TTS website)
+
+Find a comfortable and quiet place to lie down. Close your eyes gently. Let your body completely relax. Feel each breath.
+
+Now, bring your attention to your feet. Feel the warmth at the soles. Slowly tighten your toes. Hold. Release. Feel the relaxation.
+
+Move your attention to your calves. Tighten the calf muscles. Hold. Completely release. Feel the weight sinking into the ground.
+
+Bring your attention to your abdomen. Gently tighten the abdominal muscles. Feel the tension. Breathe out. Let everything relax.
+
+Now your arms and shoulders. Slowly make fists. Feel the tension in your forearms. Release. Let your shoulders completely relax.
+
+Finally, the facial muscles. Tighten your forehead. Release. Clench your jaw. Release. Let your entire face completely relax.
+
+Now your entire body is very relaxed. Feel the rhythm of your breath. Just lie quietly. Give yourself a moment. Slowly return to the present. Gently open your eyes.
+
+---
+
+## Parameters
+- Language: English (Female voice)
+- Speed: Very slow
+- Format: MP3
+- Duration: About 10 minutes

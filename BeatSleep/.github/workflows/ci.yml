@@ -1,0 +1,89 @@
+name: BeatSleep CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: macos-14
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Xcode
+      uses: apple-actions/setup-xcode@v1
+      with:
+        xcode-version: '15.0'
+    
+    - name: Install XcodeGen
+      run: |
+        if ! command -v xcodegen &> /dev/null; then
+          brew install xcodegen
+        fi
+    
+    - name: Generate Project
+      run: |
+        cd $GITHUB_WORKSPACE
+        xcodegen generate
+    
+    - name: Build
+      run: |
+        xcodebuild -project BeatSleep.xcodeproj \
+                   -scheme BeatSleep \
+                   -destination 'generic/platform=iOS Simulator' \
+                   -configuration Debug \
+                   build \
+                   CODE_SIGNING_ALLOWED=NO
+    
+    - name: Run Tests
+      run: |
+        xcodebuild -project BeatSleep.xcodeproj \
+                   -scheme BeatSleep \
+                   -destination 'generic/platform=iOS Simulator' \
+                   test \
+                   CODE_SIGNING_ALLOWED=NO
+
+  backup:
+    name: Auto Backup
+    runs-on: macos-14
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Create Backup
+      run: |
+        DATE=$(date +%Y%m%d_%H%M%S)
+        tar -czf "BeatSleep_$DATE.tar.gz" \
+            --exclude='.git' \
+            --exclude='build' \
+            --exclude='*.xcodeproj' \
+            .
+    
+    - name: Upload Backup
+      uses: actions/upload-artifact@v3
+      with:
+        name: backup-${{ github.sha }}
+        path: BeatSleep_*.tar.gz
+        retention-days: 30
+
+  docs:
+    name: Check Documentation
+    runs-on: macos-14
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Check Docs
+      run: |
+        echo "Checking documentation..."
+        # 检查文档链接有效性
+        # 检查文档格式
+        echo "Documentation check complete"

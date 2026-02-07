@@ -1,0 +1,168 @@
+/* 
+ Localizable.strings - English
+ linfuse v1.0
+*/
+
+// MARK: - App
+"app.name" = "linfuse";
+"app.version" = "Version";
+"app.build" = "Build";
+
+// MARK: - Sidebar
+"sidebar.library" = "Library";
+"sidebar.allMovies" = "All Movies";
+"sidebar.recentlyAdded" = "Recently Added";
+"sidebar.continueWatching" = "Continue Watching";
+"sidebar.watchlist" = "Watchlist";
+"sidebar.smartCollections" = "Smart Collections";
+"sidebar.topRated" = "Top Rated";
+"sidebar.recentlyWatched" = "Recently Watched";
+"sidebar.genres" = "Genres";
+"sidebar.libraryFolders" = "Library Folders";
+"sidebar.addFolder" = "Add Folder...";
+
+// MARK: - Toolbar
+"toolbar.search" = "Search movies...";
+"toolbar.sort" = "Sort";
+"toolbar.filter" = "Filter";
+"toolbar.view" = "View";
+"toolbar.import" = "Import";
+
+// MARK: - Sort Options
+"sort.title" = "Title";
+"sort.dateAdded" = "Date Added";
+"sort.releaseDate" = "Release Date";
+"sort.rating" = "Rating";
+"sort.duration" = "Duration";
+"sort.watchProgress" = "In Progress";
+
+// MARK: - Filter Options
+"filter.all" = "All";
+"filter.unwatched" = "Unwatched";
+"filter.watched" = "Watched";
+"filter.inProgress" = "In Progress";
+
+// MARK: - View Modes
+"view.grid" = "Grid";
+"view.list" = "List";
+"view.hero" = "Hero";
+
+// MARK: - Empty State
+"empty.noMovies" = "No Movies";
+"empty.addMoviesToStart" = "Add movies to your library to get started";
+"empty.noResults" = "No Results";
+"empty.noResultsFound" = "No movies found matching your search";
+
+// MARK: - Movie Detail
+"detail.overview" = "Overview";
+"detail.castCrew" = "Cast & Crew";
+"detail.related" = "Related";
+"detail.play" = "Play";
+"detail.resume" = "Resume";
+"detail.addToWatchlist" = "Add to Watchlist";
+"detail.inWatchlist" = "In Watchlist";
+"detail.details" = "Details";
+"detail.added" = "Added";
+"detail.released" = "Released";
+"detail.runtime" = "Runtime";
+"detail.fileSize" = "File size";
+"detail.watched" = "Watched";
+"detail.times" = "times";
+"detail.progress" = "Progress";
+"detail.partOfCollection" = "Part of Collection";
+"detail.videoInfo" = "Video Information";
+"detail.fileName" = "File Name";
+"detail.codec" = "Codec";
+"detail.resolution" = "Resolution";
+
+// MARK: - Importer
+"importer.title" = "Import Videos";
+"importer.dropZone" = "Drop videos here";
+"importer.browse" = "or click to browse";
+"importer.importing" = "Importing...";
+"importer.complete" = "Import Complete";
+"importer.success" = "video(s) have been added to your library.";
+"importer.chooseFiles" = "Choose Files...";
+"importer.filesSelected" = "file(s) selected";
+
+// MARK: - Player
+"player.nowPlaying" = "Now Playing";
+"player.play" = "Play";
+"player.pause" = "Pause";
+"player.stop" = "Stop";
+"player.rewind" = "Rewind";
+"player.forward" = "Skip Forward";
+"player.fullscreen" = "Fullscreen";
+"player.exitFullscreen" = "Exit Fullscreen";
+"player.closedCaptions" = "Closed Captions";
+"player.playbackSpeed" = "Playback Speed";
+"player.volume" = "Volume";
+"player.decodingRestricted" = "Decoding Restricted";
+"player.upgradeFor蓝光" = "Upgrade to Pro to play 蓝光原盘";
+"player.upgradeFor4K" = "Upgrade to Pro for 4K HEVC decoding";
+"player.upgradeMessage" = "This feature requires a paid subscription";
+
+// MARK: - Settings
+"settings.title" = "Settings";
+"settings.general" = "General";
+"settings.library" = "Library";
+"settings.libraryPath" = "Library Path";
+"settings.browse" = "Browse";
+"settings.autoFetchMetadata" = "Auto-fetch metadata";
+"settings.enableMonitoring" = "Enable folder monitoring";
+"settings.player" = "Player";
+"settings.defaultPlayer" = "Default Player";
+"settings.metadata" = "Metadata";
+"settings.imageQuality" = "Image Quality";
+"settings.imageQuality.low" = "Low";
+"settings.imageQuality.medium" = "Medium";
+"settings.imageQuality.high" = "High";
+"settings.data" = "Data";
+"settings.clearCache" = "Clear cache";
+"settings.resetLibrary" = "Reset library";
+"settings.about" = "About";
+"settings.version" = "Version";
+"settings.build" = "Build";
+"settings.privacy" = "Privacy Policy";
+"settings.terms" = "Terms of Service";
+"settings.licenses" = "Open Source Licenses";
+
+// MARK: - Subscription
+"subscription.free" = "Free";
+"subscription.pro" = "Pro";
+"subscription.yearly" = "Yearly";
+"subscription.lifetime" = "Lifetime";
+"subscription.unlockAll" = "Unlock All Features";
+"subscription.features.蓝光" = "蓝光原盘 Playback";
+"subscription.features.4K" = "4K HEVC Decoding";
+"subscription.features.dolby" = "Dolby Vision/Atmos";
+"subscription.features.updates" = "Future Updates";
+"subscription.perYear" = "/year";
+"subscription.oneTime" = "one-time";
+"subscription.upgradeNow" = "Upgrade Now";
+"subscription.restorePurchases" = "Restore Purchases";
+
+// MARK: - Errors
+"error.loadMovies" = "Error Loading Movies";
+"error.loadDetails" = "Error Loading Details";
+"error.network" = "Network Error";
+"error.fileNotFound" = "File Not Found";
+"error.decodingFailed" = "Decoding Failed";
+"error.unknown" = "An unknown error occurred";
+
+// MARK: - Common
+"common.cancel" = "Cancel";
+"common.confirm" = "Confirm";
+"common.save" = "Save";
+"common.delete" = "Delete";
+"common.edit" = "Edit";
+"common.close" = "Close";
+"common.retry" = "Retry";
+"common.loading" = "Loading...";
+"common.ok" = "OK";
+"common.yes" = "Yes";
+"common.no" = "No";
+"common.all" = "All";
+"common.none" = "None";
+"common.back" = "Back";
+"common.forward" = "Forward";

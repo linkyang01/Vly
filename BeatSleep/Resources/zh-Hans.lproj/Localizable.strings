@@ -1,0 +1,397 @@
+// MARK: - Onboarding
+"onboarding_welcome_title" = "欢迎来到 BeatSleep";
+"onboarding_welcome_subtitle" = "AI 驱动的睡眠改善助手";
+"onboarding_welcome_description" = "通过科学验证的呼吸练习、声音疗法和个性化建议，帮助你获得更好的睡眠。";
+"onboarding_478_title" = "4-7-8 呼吸法";
+"onboarding_478_subtitle" = "哈佛医学院认证";
+"onboarding_478_description" = "只需3分钟，快速放松身心。";
+"onboarding_sounds_title" = "个性化声音";
+"onboarding_sounds_subtitle" = "30+ 助眠声音";
+"onboarding_sounds_description" = "选择最适合你的入睡环境。";
+"onboarding_plan_title" = "7天改善计划";
+"onboarding_plan_subtitle" = "科学的转化路径";
+"onboarding_plan_description" = "跟随每日挑战，建立健康睡眠习惯。";
+"onboarding_continue" = "继续";
+"onboarding_skip" = "跳过";
+"onboarding_start" = "开始改善睡眠";
+
+// MARK: - Breathing
+"breathing_inhale" = "吸气";
+"breathing_hold" = "屏息";
+"breathing_exhale" = "呼气";
+"breathing_inhale_instruction" = "吸气";
+"breathing_hold_instruction" = "屏住呼吸";
+"breathing_exhale_instruction" = "呼气";
+"breathing_ready" = "准备";
+"breathing_start" = "开始";
+"breathing_pause" = "暂停";
+"breathing_resume" = "继续";
+"breathing_stop" = "停止";
+"breathing_complete" = "完成！";
+"breathing_great_job" = "做得好！";
+"breathing_done" = "完成";
+"breathing_give_up" = "放弃";
+"breathing_duration" = "时长";
+"breathing_improvement" = "改善";
+"breathing_min_faster" = "分钟更快入睡";
+
+// MARK: - Techniques
+"techniques_title" = "助眠方法";
+"techniques_choose" = "选择你的方法";
+"techniques_find_best" = "找到最适合你的方式";
+"techniques_min" = "分钟";
+"seconds" = "秒";
+"techniques_duration" = "时长";
+"techniques_difficulty" = "难度";
+
+// MARK: - Home
+"home_title" = "BeatSleep";
+"home_tonight" = "今晚";
+"home_ready_sleep" = "准备好入睡了吗？";
+"home_start_routine" = "开始睡眠流程";
+"home_getting_better" = "你越来越好了！";
+"home_falling_asleep" = "你比之前更快入睡";
+"home_recent_sleep" = "最近睡眠";
+"home_see_all" = "查看全部";
+"home_no_records" = "还没有睡眠记录";
+"home_first_session" = "今晚开始你的第一次睡眠记录";
+"home_get_started" = "开始使用";
+
+// MARK: - Settings
+"settings_title" = "设置";
+"settings_about" = "关于";
+"settings_version" = "版本";
+"settings_privacy" = "隐私政策";
+"settings_terms" = "服务条款";
+"settings_contact" = "联系我们";
+"settings_language" = "语言";
+"settings_notifications" = "通知";
+"settings_reminder" = "睡眠提醒";
+"settings_reminder_time" = "提醒时间";
+"settings_data" = "数据";
+"settings_export" = "导出数据";
+"settings_clear" = "清除数据";
+
+// MARK: - Paywall
+"paywall_unlock" = "解锁完整功能";
+"paywall_used_days" = "你已经使用了";
+"paywall_days" = "天";
+"paywall_ready" = "准备好获得最佳睡眠体验了吗？";
+"paywall_your_results" = "你的 7 天成果";
+"paywall_continue_unlock" = "继续解锁完整功能，保持你的睡眠进步！";
+"paywall_monthly" = "月订阅";
+"paywall_annual" = "年订阅";
+"paywall_lifetime" = "终身";
+"paywall_per_month" = "/月";
+"paywall_per_year" = "/年";
+"paywall_start_trial" = "开始免费试用";
+"paywall_subscribe_monthly" = "订阅月付";
+"paywall_subscribe_annual" = "订阅年付";
+"paywall_buy_lifetime" = "一次性购买";
+"paywall_restore" = "恢复购买";
+"paywall_agree_terms" = "继续表示同意";
+"paywall_terms" = "服务条款";
+"paywall_and" = "和";
+"paywall_privacy" = "隐私政策";
+
+// MARK: - Days
+"day_1" = "1 天";
+"day_n" = "天";
+
+// MARK: - Common
+"ok" = "确定";
+"cancel" = "取消";
+"save" = "保存";
+"delete" = "删除";
+"confirm" = "确认";
+"loading" = "加载中...";
+"error" = "错误";
+"retry" = "重试";
+"off" = "关闭";
+"on" = "开启";
+
+// MARK: - Home
+"home_title" = "BeatSleep";
+"home_tonight" = "今晚";
+"home_ready_sleep" = "准备好入睡了？";
+"home_start_routine" = "开始睡眠流程";
+"home_getting_better" = "你越来越好了！";
+"home_falling_asleep" = "你比之前更快入睡";
+"home_recent_sleep" = "最近睡眠";
+"home_see_all" = "查看全部";
+"home_no_records" = "还没有睡眠记录";
+"home_first_session" = "今晚开始你的第一次睡眠记录";
+"home_get_started" = "开始使用";
+
+// MARK: - Settings
+"settings_title" = "设置";
+"settings_sleep_goal" = "睡眠目标";
+"settings_target_duration" = "目标睡眠时长";
+"settings_hours" = "小时";
+"settings_reminder" = "提醒";
+"settings_bedtime_reminder" = "睡前提醒";
+"settings_time" = "时间";
+"settings_feedback" = "反馈";
+"settings_sound_effects" = "声音效果";
+"settings_haptic_feedback" = "触感反馈";
+"settings_subscription" = "订阅";
+"settings_upgrade_pro" = "升级到专业版";
+"settings_days_left" = "天剩余";
+"settings_about" = "关于";
+"settings_version" = "版本";
+"settings_privacy_policy" = "隐私政策";
+"settings_terms_service" = "服务条款";
+"settings_contact_support" = "联系客服";
+
+// MARK: - Subscription
+"settings_unlock_full" = "解锁完整功能";
+"settings_most_beatsleep" = "充分发挥 BeatSleep 的潜力";
+"settings_monthly" = "月订阅";
+"settings_yearly" = "年订阅";
+"settings_cancel_anytime" = "随时取消";
+"settings_save_33" = "节省 33%";
+"settings_best_value" = "最佳选择";
+
+// MARK: - Techniques
+"techniques_title" = "助眠方法";
+"techniques_choose" = "选择你的方法";
+"techniques_find_best" = "找到最适合你的方式";
+"techniques_min" = "分钟";
+"techniques_duration" = "时长";
+"techniques_difficulty" = "难度";
+"recommended_for" = "推荐";
+"difficulty_medium" = "中等";
+"difficulty_easy" = "简单";
+"difficulty_effortless" = "轻松";
+"breathing_stop" = "停止";
+"breathe_dot" = "呼吸中...";
+
+// MARK: - Watch Settings
+"settings_haptic_alerts" = "触感提醒";
+"settings_sound_alerts" = "声音提醒";
+
+// MARK: - Watch Data
+"watch_data_title" = "Watch 数据";
+"watch_connected" = "Apple Watch 已连接";
+"watch_not_connected" = "Watch 未连接";
+"watch_syncing" = "同步中...";
+"watch_tap_connect" = "点击连接";
+"watch_realtime" = "实时数据";
+"watch_live" = "Live";
+"watch_heart_rate" = "心率";
+"watch_bpm" = "BPM";
+"watch_hrv" = "心率变异性";
+"watch_ms" = "毫秒";
+"watch_sleep_ready" = "睡眠准备度";
+"watch_today_trend" = "今日趋势";
+"watch_start" = "开始";
+"watch_min" = "最低";
+"watch_current" = "当前";
+"watch_stop" = "停止";
+"watch_sync" = "同步";
+"watch_pair" = "配对 Apple Watch";
+"watch_open_app" = "在 Watch 上打开 BeatSleep 开始同步数据";
+"watch_how_connect" = "如何连接";
+"watch_connect_title" = "连接 Apple Watch";
+"watch_help_step1" = "打开 Watch 应用";
+"watch_help_step1_desc" = "在 Apple Watch 上打开 BeatSleep 应用";
+"watch_help_step2" = "保持靠近";
+"watch_help_step2_desc" = "将 iPhone 和 Apple Watch 放在一起";
+"watch_help_step3" = "等待连接";
+"watch_help_step3_desc" = "连接将自动建立";
+"watch_help_step4" = "授予权限";
+"watch_help_step4_desc" = "出现提示时允许心率和 HealthKit 访问";
+"watch_done" = "完成";
+
+// MARK: - Therapy
+"therapy_ready" = "准备";
+"therapy_start" = "开始";
+"therapy_stop" = "停止";
+"therapy_playing" = "播放中...";
+"therapy_remaining" = "剩余时间";
+"therapy_progressive" = "渐进式肌肉放松";
+"therapy_bodyscan" = "身体扫描";
+
+// MARK: - Duration Picker
+"duration_title" = "设置时长";
+"duration_preset" = "推荐时长";
+"duration_custom" = "自定义";
+"duration_minutes" = "分钟";
+"duration_selected" = "已选择";
+"duration_cancel" = "取消";
+"duration_save" = "保存";
+
+// MARK: - White Noise
+"settings_lifetime" = "终身";
+"settings_onetime_payment" = "一次性购买";
+"settings_start_trial" = "开始免费试用";
+"settings_free_then" = "7 天免费试用，之后";
+
+// MARK: - Paywall
+"paywall_unlock" = "解锁完整功能";
+"paywall_used_days" = "你已经使用了";
+"paywall_days" = "天";
+"paywall_ready" = "准备好获得最佳睡眠体验了吗？";
+"paywall_your_results" = "你的 7 天成果";
+"paywall_continue_unlock" = "继续解锁完整功能，保持你的睡眠进步！";
+"paywall_monthly" = "月订阅";
+"paywall_annual" = "年订阅";
+"paywall_lifetime" = "终身";
+"paywall_monthly_price" = "$4.99/月";
+"paywall_annual_price" = "$39.99/年";
+"paywall_lifetime_price" = "$99.99";
+"paywall_annual_original" = "$59.88";
+"paywall_lifetime_original" = "$239.52";
+"paywall_annual_savings" = "节省 33%";
+"paywall_lifetime_savings" = "节省 58%";
+"paywall_subscribe_monthly" = "订阅月付";
+"paywall_subscribe_annual" = "订阅年付";
+"paywall_buy_lifetime" = "一次性购买";
+"paywall_restore" = "恢复购买";
+"paywall_agree_terms" = "继续表示同意";
+"paywall_terms" = "服务条款";
+"paywall_and" = "和";
+"paywall_privacy" = "隐私政策";
+"paywall_feature_sounds" = "所有声音和疗法";
+"paywall_feature_watch" = "Apple Watch 集成";
+"paywall_feature_hrv" = "HRV 实时追踪";
+"paywall_feature_stories" = "睡眠故事无限听";
+"paywall_feature_trial" = "7天免费试用";
+"paywall_streak_days" = "连续天数";
+"paywall_total_time" = "总练习时长";
+"paywall_hrv_improvement" = "HRV 提升";
+"paywall_lifetime_perks" = "永久使用";
+"paywall_lifetime_updates" = "终身免费更新";
+"paywall_lifetime_priority" = "优先支持";
+
+// MARK: - Techniques
+"technique_478" = "4-7-8 呼吸法";
+"technique_pmr" = "渐进式肌肉放松";
+"technique_bodyscan" = "身体扫描";
+"technique_216" = "2-1-6 呼吸";
+"technique_whitenoise" = "白噪音";
+
+"technique_478_desc" = "哈佛医学院认证的呼吸法，通过4秒吸气-7秒屏息-8秒呼气，帮助快速入睡。";
+"technique_pmr_desc" = "从脚到头逐个紧张和放松肌肉群，释放身体紧张。";
+"technique_bodyscan_desc" = "注意力从脚到头扫描全身，识别并释放紧张部位。";
+"technique_216_desc" = "简化版呼吸法：吸气2秒-屏息1秒-呼气6秒，适合入门。";
+"technique_whitenoise_desc" = "白噪音掩盖环境突变噪音，创造稳定睡眠环境。";
+
+"technique_478_recommended" = "紧张焦虑、想快速入睡";
+"technique_pmr_recommended" = "身体紧绷、压力大";
+"technique_bodyscan_recommended" = "思绪繁多、停不下来";
+"technique_216_recommended" = "初次尝试、屏息不舒服";
+"technique_whitenoise_recommended" = "环境嘈杂、需要遮噪";
+
+// MARK: - White Noise
+"white_noise_title" = "白噪音";
+"white_noise_subtitle" = "选择你喜欢的声音";
+"playing_now" = "正在播放";
+
+// Sound names
+"rain_name" = "雨声";
+"ocean_name" = "海浪";
+"wind_name" = "风声";
+"fire_name" = "壁炉";
+"forest_name" = "森林";
+"river_name" = "河流";
+
+// Sound descriptions
+"rain_desc" = "柔和的雨声，掩盖突发噪音";
+"ocean_desc" = "节奏感的海浪声";
+"wind_desc" = "轻柔的风声";
+"fire_desc" = "温暖的壁炉声";
+"forest_desc" = "自然的森林氛围";
+"river_desc" = "平静的流水声";
+
+"white_noise_select" = "选择声音";
+"white_noise_play" = "播放";
+"white_noise_stop" = "停止";
+
+"settings_onetime_payment" = "一次性购买";
+
+"play" = "播放";
+"pause" = "暂停";
+"playing" = "正在播放";
+
+
+"play_min" = "播放";
+"min" = "分钟";
+
+"progressive_name" = "渐进式肌肉放松";
+"progressive_desc" = "收紧后放松肌肉群";
+"bodyscan_name" = "身体扫描";
+"bodyscan_desc" = "从脚到头的放松扫描";
+"background_sound" = "背景音";
+"none" = "无";
+"guide_playing" = "引导中...";
+
+"notification_title" = "睡前提醒";
+"notification_body" = "该睡觉了，来做几个呼吸练习吧 🌙";
+
+// MARK: - Watch
+"watch_data" = "心率数据";
+"watch_connected" = "已连接";
+"watch_disconnected" = "未连接";
+"watch_trend" = "今日趋势";
+"watch_avg_hr" = "平均心率";
+"watch_samples" = "数据点";
+"watch_sleep_readiness" = "睡眠准备度";
+"watch_pair_needed" = "需要配对";
+"watch_open_phone" = "请在 iPhone 上打开 BeatSleep App 进行配对";
+"breathe_in" = "吸气";
+"breathe_hold" = "屏息";
+"breathe_out" = "呼气";
+"breathe_dot" = "跟随节奏";
+
+// MARK: - Completion
+"completion_great_job" = "太棒了！";
+"completion_session_done" = "练习完成";
+"completion_how_long" = "你多久睡着的？";
+"completion_time_to_sleep" = "入睡时间";
+"completion_quality" = "睡眠质量";
+"completion_save" = "保存记录";
+"completion_saved" = "已保存！";
+
+// MARK: - Good Night
+"goodnight_title" = "晚安";
+"goodnight_message" = "祝你好梦";
+"goodnight_closing" = "页面将在";
+
+"notification_review_title" = "早安！昨晚睡得怎么样？";
+"notification_review_body" = "打开 BeatSleep 查看昨晚的睡眠数据";
+"notification_review_open" = "查看详情";
+"notification_review_later" = "稍后";
+
+// MARK: - Sleep Review
+"review_title" = "睡眠回顾";
+"review_subtitle" = "结合 Apple Watch 数据";
+"review_loading" = "正在读取睡眠数据...";
+"review_sleep_times" = "睡眠时间";
+"review_bedtime" = "昨晚入睡";
+"review_waketime" = "今早起床";
+"review_statistics" = "睡眠统计";
+"review_total_sleep" = "总时长";
+"review_deep_sleep" = "深睡";
+"review_avg_hr" = "平均心率";
+"review_heart_rate_trend" = "心率趋势";
+"review_before_sleep" = "睡前";
+"review_after_sleep" = "醒后";
+"review_quality" = "睡眠质量";
+"review_save" = "保存记录";
+"review_skip" = "跳过";
+"review_no_watch_data" = "未检测到 Apple Watch 睡眠数据\n请确保手表已配对并在睡前佩戴";
+
+// MARK: - Sleep Review
+"review_title" = "睡眠回顾";
+"review_subtitle" = "来自 Apple Watch 的睡眠数据";
+"review_loading" = "正在读取睡眠数据...";
+"review_sleep_times" = "睡眠时间";
+"review_bedtime" = "入睡";
+"review_waketime" = "起床";
+"review_total_sleep" = "总时长";
+"review_deep_sleep" = "深睡";
+"review_light_sleep" = "浅睡";
+"review_quality" = "睡眠质量";
+"review_save" = "保存记录";
+"review_skip" = "跳过";

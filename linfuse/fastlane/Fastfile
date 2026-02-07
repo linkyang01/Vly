@@ -1,0 +1,244 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Fastlane configuration for linfuse App Store submission
+# Usage: fastlane [lane_name]
+
+# Check for XcodeGen
+unless system("which xcodegen > /dev/null 2>&1")
+  UI.user_error!("XcodeGen is not installed. Run: brew install xcodegen")
+end
+
+# Check for Fastlane
+unless system("which fastlane > /dev/null 2>&1")
+  UI.user_error!("Fastlane is not installed. Run: brew install fastlane")
+end
+
+# App Store Connect credentials
+ENV["FASTLANE_USER"] ||= ""
+ENV["FASTLANE_PASSWORD"] ||= ""
+ENV["APP_STORE_CONNECT_API_KEY_PATH"] ||= "./AppStoreConnect_API_Key.json"
+
+# Project paths
+APP_NAME = "linfuse"
+PROJECT_PATH = "./#{APP_NAME}.xcodeproj"
+WORKSPACE_PATH = "./#{APP_NAME}.xcworkspace"
+ARCHIVE_PATH = "./build/#{APP_NAME}.xcarchive"
+IPA_PATH = "./build/#{APP_NAME}.ipa"
+EXPORT_OPTIONS_PATH = "./ExportOptions.plist"
+
+# Default lane
+default_platform(:mac)
+
+# --------------------
+# Lanes
+# --------------------
+
+# Generate project and build for development
+platform :mac do
+  desc "Generate Xcode project and build for development"
+  lane :dev do
+    generate_project
+    build_dev
+  end
+
+  desc "Generate Xcode project"
+  lane :generate do
+    generate_project
+  end
+
+  desc "Build development version"
+  lane :build_dev do
+    build_app(
+      workspace: WORKSPACE_PATH,
+      scheme: APP_NAME,
+      configuration: "Debug",
+      xcargs: "CODE_SIGN_IDENTITY=- CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO",
+      silent: true
+    )
+  end
+
+  desc "Build for App Store"
+  lane :build_appstore do
+    build_app(
+      workspace: WORKSPACE_PATH,
+      scheme: APP_NAME,
+      configuration: "Release",
+      export_method: "app-store",
+      xcargs: "CODE_SIGN_STYLE=automatic",
+      silent: true
+    )
+  end
+
+  desc "Run tests"
+  lane :test do
+    run_tests(
+      workspace: WORKSPACE_PATH,
+      scheme: "#{APP_NAME}Tests",
+      destination: "platform=macOS",
+      code_coverage: true
+    )
+  end
+
+  desc "Upload to App Store Connect"
+  lane :upload do
+    upload_to_app_store(
+     ipa: IPA_PATH,
+      skip_screenshots: false,
+      skip_metadata: false,
+      submit_for_review: false,
+      automatic_release: false,
+      release_notes: {
+        "en-US" => "Version 1.8 - Ready for App Store!",
+        "zh-CN" => "版本 1.8 - 准备上架 App Store！"
+      }
+    )
+  end
+
+  desc "Prepare TestFlight build"
+  lane :testflight do
+    build_appstore
+    upload_to_testflight(
+     ipa: IPA_PATH,
+      skip_waiting_for_build_processing: false,
+      groups: ["External Testers"]
+    )
+  end
+
+  desc "Complete App Store submission"
+  lane :submit do
+    # Ensure build is ready
+    ensure_env_vars(
+      env_vars: ["FASTLANE_USER", "APP_STORE_CONNECT_API_KEY_PATH"]
+    )
+
+    # Build and upload
+    build_appstore
+
+    # Upload to App Store Connect
+    upload_to_app_store(
+     ipa: IPA_PATH,
+      submit_for_review: true,
+      automatic_release: false,
+      app_version: "1.8",
+      release_notes: {
+        "en-US" => "Version 1.8 - Ready for App Store!\n\nFeatures:\n- Smart video library management\n- Automatic metadata from TMDB\n- iCloud sync across devices\n- Built-in video player\n- Watch history & favorites\n- Multiple subscription options",
+        "zh-CN" => "版本 1.8 - 准备上架 App Store！\n\n功能：\n- 智能视频库管理\n- 自动从 TMDB 获取元数据\n- 跨设备 iCloud 同步\n- 内置视频播放器\n- 观看历史和收藏\n- 多种订阅选项"
+      }
+    )
+  end
+
+  desc "Increment build number"
+  lane :increment_build do
+    increment_build_number(
+      build_number: Time.now.strftime("%Y%m%d%H%M").to_i.to_s,
+      xcodeproj: PROJECT_PATH
+    )
+  end
+
+  desc "Create screenshots"
+  lane :screenshots do
+    capture_screenshots(
+      workspace: WORKSPACE_PATH,
+      scheme: APP_NAME,
+      simulator: "iPhone 15 Pro",
+      output_directory: "./screenshots",
+      languages: ["en-US", "zh-CN"]
+    )
+  end
+
+  desc "Validate app metadata"
+  lane :validate do
+    app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_path: ENV["APP_STORE_CONNECT_API_KEY_PATH"]
+    )
+
+    download_app_store_metadata(
+      app_identifier: "com.linfuse.app",
+      output_path: "./metadata"
+    )
+  end
+end
+
+# --------------------
+# Helper Methods
+# --------------------
+
+# Generate Xcode project using XcodeGen
+def generate_project
+  puts "Generating Xcode project with XcodeGen..."
+
+  unless system("xcodegen generate --spec project.yml")
+    UI.user_error!("Failed to generate Xcode project")
+  end
+
+  puts "✅ Xcode project generated successfully"
+end
+
+# Setup Fastlane Match for code signing
+def setup_code_signing
+  unless system("which match > /dev/null 2>&1")
+    UI.user_error!("Fastlane Match not installed. Run: fastlane match init")
+  end
+
+  match(
+    type: "appstore",
+    app_identifier: "com.linfuse.app",
+    readonly: true
+  )
+end
+
+# Print environment info
+def print_info
+  puts "=" * 50
+  puts "linfuse Fastlane Configuration"
+  puts "=" * 50
+  puts "Project: #{APP_NAME}"
+  puts "Path: #{PROJECT_PATH}"
+  puts "Archive Path: #{ARCHIVE_PATH}"
+  puts "IPA Path: #{IPA_PATH}"
+  puts "=" * 50
+end
+
+# --------------------
+# Error Handling
+# --------------------
+
+error do |lane, exception|
+  puts "\n❌ Error in lane: #{lane}"
+  puts "Exception: #{exception.message}"
+  puts "\n💡 Tips:"
+  puts "- Ensure XcodeGen is installed: brew install xcodegen"
+  puts "- Ensure Fastlane is installed: brew install fastlane"
+  puts "- Check your Apple Developer credentials"
+  puts "- Verify project configuration"
+end
+
+# --------------------
+# Documentation
+# --------------------
+
+puts "=" * 50
+puts "linfuse Fastlane Commands"
+puts "=" * 50
+puts ""
+puts "Development:"
+puts "  fastlane mac dev        # Generate and build dev version"
+puts "  fastlane mac generate  # Generate Xcode project"
+puts "  fastlane mac build_dev # Build debug version"
+puts ""
+puts "Testing:"
+puts "  fastlane mac test      # Run unit tests"
+puts "  fastlane mac screenshots # Capture screenshots"
+puts ""
+puts "Distribution:"
+puts "  fastlane mac testflight # Upload to TestFlight"
+puts "  fastlane mac submit     # Submit to App Store"
+puts "  fastlane mac upload     # Upload only"
+puts ""
+puts "Maintenance:"
+puts "  fastlane mac increment_build # Increment build number"
+puts "  fastlane mac validate        # Validate metadata"
+puts "=" * 50

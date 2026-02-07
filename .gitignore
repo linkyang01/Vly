@@ -1,0 +1,32 @@
+# Xcode
+*.xcodeproj/
+!.xcodeproj/project.pbxproj
+
+# Build
+build/
+DerivedData/
+
+# macOS
+.DS_Store
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+*.xcuserstate
+*.xcuserdatad/
+
+# Swift Package Manager
+.build/
+
+# Carthage
+Carthage/Build/
+
+# 临时文件
+*.tmp
+*.log
+
+# 项目特定的忽略
+BeatSleep_backup_*/
