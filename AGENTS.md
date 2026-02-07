@@ -280,6 +280,27 @@ workspace/AGENTS.md (全局)  >  项目/AGENTS.md (项目)  >  项目/README.md
 | ❌ 长期不推送 | GitHub 仓库至少每周推送 |
 | ❌ 忽略 .gitignore | 确保重要文件被追踪 |
 
+### AppIcon 规范
+
+| 阶段 | 要求 |
+|------|------|
+| **开发期** | 用占位符图标，不影响测试 |
+| **发布前** | 必须生成正式 AppIcon |
+
+#### AppIcon 生成脚本
+
+```
+项目路径: scripts/generate_appicon.sh
+使用方法: ./scripts/generate_appicon.sh [项目路径]
+前置依赖: pip3 install Pillow
+```
+
+#### 规范要求
+
+- 每个项目必须包含 `scripts/generate_appicon.sh`
+- 每个项目必须有 `Resources/Assets.xcassets/AppIcon.appiconset/`
+- AppIcon 生成放在发布前执行，不是开发任务
+
 ---
 
 ## 📝 格式规范
