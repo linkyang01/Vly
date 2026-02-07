@@ -1,10 +1,35 @@
 # Vly 项目 AI 行为规范
 
+## ⚠️ 核心约束（必须做到）
+
+> **做不到就放弃这个项目**
+
+### 播放器约束
+
+| 约束 | 要求 | 做不到？ |
+|------|------|---------|
+| **KSPlayer** | 必须使用 KSPlayer 作为播放器内核 | ❌ 放弃项目 |
+| **FFmpeg** | 必须激活 FFmpeg 解码，支持多格式 | ❌ 放弃项目 |
+| **多格式** | MKV、AVI、FLV 等必须能播放 | ❌ 放弃项目 |
+| **AVPlayer** | 基础 AVPlayer 无法满足多格式需求 | ❌ 不能只用 AVPlayer |
+
+### 代码约束
+
+```swift
+// ✅ 正确：使用 KSPlayer
+import KSPlayer
+let player = KSPlayerNode()
+
+// ❌ 错误：只使用 AVPlayer
+import AVKit
+let player = AVPlayer()  // ← 不允许！
+```
+
 ## 项目概述
 
 - **名称**: Vly
-- **描述**: 简洁优雅的 macOS/iOS 开源视频播放器
-- **技术栈**: SwiftUI 4.0, KSPlayer (AVPlayer + FFmpeg)
+- **描述**: 简洁优雅的 macOS/iOS 视频播放器
+- **技术栈**: SwiftUI 4.0, **KSPlayer + FFmpeg**
 - **平台**: macOS 12.0+ / iOS 15.0+
 - **License**: GPL v3
 
@@ -66,9 +91,10 @@ Sources/
 
 1. ✅ 首先阅读项目 README.md
 2. ✅ 阅读相关设计文档
-3. ✅ 遵循代码规范
-4. ✅ 保持文档更新
-5. ✅ 提交前运行代码格式化
+3. ✅ 确认使用 KSPlayer（不是基础 AVPlayer）
+4. ✅ 遵循代码规范
+5. ✅ 保持文档更新
+6. ✅ 提交前运行代码格式化
 
 ## 常用命令
 
@@ -91,6 +117,7 @@ swiftformat .
 
 ## 禁止行为
 
+- ❌ **不要只使用 AVPlayer**（必须用 KSPlayer + FFmpeg）
 - ❌ 不要修改 KSPlayer 源码（使用适配器模式）
 - ❌ 不要跳过代码规范
 - ❌ 不要忘记更新文档
@@ -99,5 +126,6 @@ swiftformat .
 ## 相关链接
 
 - [KSPlayer](https://github.com/kingslay/KSPlayer)
+- [FFmpeg](https://ffmpeg.org/)
 - [SwiftUI 文档](https://developer.apple.com/swiftui/)
 - [Apple Swift Style Guide](https://www.swift.org/documentation/api-design-guidelines/)
