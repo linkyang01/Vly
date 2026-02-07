@@ -284,8 +284,8 @@ workspace/AGENTS.md (全局)  >  项目/AGENTS.md (项目)  >  项目/README.md
 
 | 阶段 | 要求 |
 |------|------|
-| **开发期** | 用占位符图标，不影响测试 |
-| **发布前** | 必须生成正式 AppIcon |
+| **立项时** | 生成占位符 AppIcon，不影响开发测试 |
+| **发布前** | 决定是否更新为正式图标 |
 
 #### AppIcon 生成脚本
 
@@ -299,7 +299,8 @@ workspace/AGENTS.md (全局)  >  项目/AGENTS.md (项目)  >  项目/README.md
 
 - 每个项目必须包含 `scripts/generate_appicon.sh`
 - 每个项目必须有 `Resources/Assets.xcassets/AppIcon.appiconset/`
-- AppIcon 生成放在发布前执行，不是开发任务
+- **立项时执行**脚本生成占位符图标
+- 发布前评估是否需要更新为正式图标
 
 ---
 
