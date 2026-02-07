@@ -40,10 +40,94 @@
 
 | 模块 | 功能 | 触发条件 |
 |------|------|----------|
-| **网络存储** | SMB/NFS/WebDAV 支持 | v1.1 |
+| **网络存储** | SMB/NFS/WebDAV/iCloud/阿里云盘 等 | v1.1 |
 | **iCloud 同步** | Core Data + CloudKit | v1.2 |
 | **iOS 版本** | iPhone/iPad App | v1.3 |
 | **高级解码** | 蓝光原盘、HEVC、杜比视界 | 付费解锁 |
+
+---
+
+## 附录 A：网盘支持清单
+
+> **最后更新**: 2026-02-07
+
+### Infuse 对标支持的网盘服务
+
+#### 国外网盘（✅ 可支持）
+
+| 网盘 | 状态 | API | 技术难度 |
+|------|------|-----|----------|
+| **iCloud Drive** | ✅ 推荐 | `FileManager` 原生 | ⭐ |
+| **Google Drive** | ✅ 可做 | Google Drive API | ⭐⭐ |
+| **Dropbox** | ✅ 可做 | Dropbox API | ⭐⭐ |
+| **OneDrive** | ✅ 可做 | Microsoft Graph API | ⭐⭐ |
+| **Amazon Drive** | ✅ 可做 | Amazon S3 API | ⭐⭐ |
+| **Box** | ✅ 可做 | Box SDK | ⭐⭐ |
+| **pCloud** | ✅ 可做 | pCloud SDK | ⭐⭐ |
+| **SMB/CIFS** | ✅ 推荐 | `Network` Framework | ⭐ |
+| **UPnP/DLNA** | ✅ 推荐 | `Network` Framework | ⭐ |
+| **NFS** | ✅ 推荐 | `Network` Framework | ⭐ |
+| **WebDAV** | ✅ 可做 | 第三方库 | ⭐⭐ |
+
+#### 国内网盘（⚠️ 情况复杂）
+
+| 网盘 | 是否有官方 API | 支持难度 | 优先级 |
+|------|---------------|----------|--------|
+| **阿里云盘** | ✅ 有 | ⭐⭐ | P1 推荐 |
+| **百度网盘** | ✅ 有（限速） | ⭐⭐⭐ 麻烦 | P2 |
+| **腾讯微云** | ⚠️ 不清楚 | 未知 | 待调研 |
+| **夸克网盘** | ❌ 没有官方 API | ❌ 做不了 | 不支持 |
+| **天翼云盘** | ✅ 有 | ⭐⭐ | P2 |
+| **坚果云** | ✅ 有（专注同步） | ⭐⭐ | P2 |
+| **iCloud（中国）** | ✅ 原生支持 | ⭐ | P0 |
+
+### linfuse 网盘支持优先级
+
+| 优先级 | 网盘 | 类型 | 说明 |
+|--------|------|------|------|
+| **P0** | **SMB/NFS/UPnP** | 局域网 | 免费、自己能搭 |
+| **P0** | **iCloud Drive** | 云盘 | Apple 生态，用户多 |
+| **P1** | **阿里云盘** | 云盘 | 国内用户量大 |
+| **P1** | **Google Drive** | 云盘 | 国外用户常用 |
+| **P1** | **OneDrive** | 云盘 | 办公用户常用 |
+| **P2** | Dropbox | 云盘 | 国外用户常用 |
+| **P2** | 坚果云 | 云盘 | 同步盘，支持好 |
+| **P2** | 百度网盘 | 云盘 | 用户多但 API 麻烦 |
+
+### 不能支持的网盘
+
+| 网盘 | 原因 |
+|------|------|
+| **夸克网盘** | 没有官方 API |
+| **某些小众网盘** | 没有官方 API |
+
+### 技术实现参考
+
+#### iOS/macOS 原生支持
+
+| 网盘 | 实现方式 |
+|------|----------|
+| iCloud Drive | `FileManager` 原生 |
+| SMB/NFS/UPnP | `Network` Framework |
+| WebDAV | 第三方库（如 DAVKit） |
+
+#### 需要 SDK 的
+
+| 网盘 | SDK |
+|------|-----|
+| Google Drive | Google Drive API |
+| OneDrive | Microsoft Graph API |
+| 阿里云盘 | 阿里云盘 Open API |
+| 百度网盘 | 百度网盘 SDK |
+| Dropbox | Dropbox API |
+| Box | Box SDK |
+
+### 注意事项
+
+1. **API 变更风险**: 网盘服务商可能随时变更 API，需要做好适配
+2. **限速问题**: 百度网盘等国内网盘有下载限速，需要处理
+3. **认证方式**: OAuth 2.0 是主流，需要实现登录流程
+4. **缓存策略**: 大文件需要实现增量下载和缓存管理 |
 
 ---
 
