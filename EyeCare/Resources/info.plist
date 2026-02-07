@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- 应用基本信息 -->
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <false/>
+    </dict>
+    
+    <!-- 界面配置 -->
+    <key>UILaunchScreen</key>
+    <dict>
+        <key>UIColorName</key>
+        <string>LaunchScreenBackground</string>
+        <key>UIImageName</key>
+        <string>LaunchIcon</string>
+    </dict>
+    
+    <!-- 支持的界面风格 -->
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>armv7</string>
+    </array>
+    
+    <!-- 界面方向 -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    
+    <!-- 状态栏样式 -->
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleDefault</string>
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <true/>
+    
+    <!-- 通知配置 -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
+    
+    <!-- 用户通知使用说明 -->
+    <key>NSUserNotificationUsageDescription</key>
+    <string>EyeCare 需要发送休息提醒通知，帮助您养成健康的用眼习惯。</string>
+    
+    <!-- 权限 -->
+    <key>NSCalendarsUsageDescription</key>
+    <string>EyeCare 需要访问日历以智能安排休息时间。</string>
+    <key>NSCalendarsFullAccessUsageDescription</key>
+    <string>EyeCare 需要完全访问日历权限以智能安排休息时间。</string>
+    
+    <!-- App Groups (用于与 BeatSleep 共享数据) -->
+    <key>com.apple.security.application-groups</key>
+    <array>
+        <string>group.com.eyecare.shared</string>
+    </array>
+    
+    <!-- 健康共享权限 -->
+    <key>NSHealthShareUsageDescription</key>
+    <string>EyeCare 需要读取屏幕使用时间数据以了解您的用眼情况。</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>EyeCare 需要写入护眼时长数据以记录您的健康活动。</string>
+    
+    <!-- Apple Watch 权限 -->
+    <key>NSAppleWatchUsageDescription</key>
+    <string>EyeCare 需要与 Apple Watch 通信以提供震动提醒。</string>
+    
+    <!-- 后台任务 -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+        <string>processing</string>
+    </array>
+    
+    <!-- 最小支持版本 -->
+    <key>MinimumSystemVersion</key>
+    <string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+</dict>
+</plist>

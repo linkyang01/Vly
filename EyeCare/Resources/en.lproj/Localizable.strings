@@ -1,0 +1,100 @@
+/* EyeCare Localizable Strings - English */
+
+/* General */
+"EyeCare" = "EyeCare";
+"App.Subtitle" = "Protect your eyes, safeguard your vision";
+"Tab.Home" = "Home";
+"Tab.Stats" = "Stats";
+"Tab.Achievements" = "Achievements";
+"Tab.Settings" = "Settings";
+
+/* Home View */
+"Home.Title" = "EyeCare";
+"Home.Subtitle" = "Protect your eyes, safeguard your vision";
+"Home.Today's Rest" = "Today's Rest";
+"Home.Goal" = "/ %d";
+"Home.Last Rest" = "Last Rest";
+"Home.Streak Days" = "Streak Days";
+"Home.Quick Rest" = "Quick Rest";
+"Home.Start Timer" = "Start 20s Timer";
+"Home.Tip" = "Tip";
+"Home.20-20-20 Rule" = "20-20-20 Rule";
+"Home.20-20-20 Description" = "Every 20 minutes, look at something 20 feet away for 20 seconds to relieve eye strain";
+
+/* Stats View */
+"Stats.Title" = "Stats";
+"Stats.Subtitle" = "Eye usage overview";
+"Stats.Weekly Total" = "Weekly Total";
+"Stats.Times" = "times";
+"Stats.Duration" = "minutes";
+"Stats.Weekly Trend" = "Weekly Trend";
+"Stats.Average Completion" = "Average Completion: %@";
+"Stats.Peak Hours" = "Peak Usage Hours";
+"Stats.Active" = "Active";
+"Stats.Moderate" = "Moderate";
+"Stats.Low" = "Low";
+
+/* Achievements View */
+"Achievements.Title" = "Achievements";
+"Achievements.Subtitle" = "Unlock achievements, earn badges";
+"Achievements.Unlocked" = "Unlocked";
+"Achievements.Locked" = "Locked";
+"Achievements.Unlocked Count" = "%d / %d";
+"Achievements.Keep Going" = "Keep going! You haven't unlocked any achievements yet.";
+"Achievements.Progress" = "%d / %d";
+"Achievements.Unlocked Badge" = "Unlocked";
+
+/* Settings View */
+"Settings.Title" = "Settings";
+"Settings.Subtitle" = "Personalize your eye care experience";
+"Settings.Notifications" = "Notifications";
+"Settings.Notifications Enabled" = "Notifications";
+"Settings.Reminder Interval" = "Reminder Interval";
+"Settings.Device" = "Connected Devices";
+"Settings.Apple Watch Haptic" = "Apple Watch Haptic";
+"Settings.BeatSleep" = "Connect BeatSleep";
+"Settings.Shortcuts" = "Shortcuts";
+"Settings.About" = "About";
+"Settings.Version" = "Version";
+"Settings.Rate Us" = "Rate Us";
+"Settings.Contact Us" = "Contact Us";
+
+/* About */
+"About.App Name" = "EyeCare";
+"About.Version" = "Version %@";
+"About.Description" = "20-20-20 Eye Care Assistant\nHelps you develop healthy eye habits";
+"About.Done" = "Done";
+
+/* Timer View */
+"Timer.Title" = "20-20-20 Eye Rest Time";
+"Timer.Look Far" = "Look at something 6 meters away";
+"Timer.Complete" = "Done!";
+"Timer.Eyes Refreshed" = "Your eyes are refreshed!";
+"Timer.Skip" = "Skip";
+"Timer.Start Timer" = "Start Timer";
+"Timer.Snooze" = "Snooze";
+
+/* Notifications */
+"Notification.Rest.Title" = "Give your eyes a rest";
+"Notification.Rest.Body" = "Every 20 minutes, look at something 20 feet away for 20 seconds to relieve eye strain";
+"Notification.Achievement.Title" = "🏆 EyeCare";
+"Notification.Achievement.Body" = "🎉 New Achievement Unlocked!\n%@\n%@";
+
+/* Achievements */
+"Achievement.Beginner.Title" = "Beginner Eye Care";
+"Achievement.Beginner.Description" = "Complete your first eye rest";
+"Achievement.Streak3.Title" = "3-Day Streak";
+"Achievement.Streak3.Description" = "Complete eye rest for 3 consecutive days";
+"Achievement.Streak5.Title" = "5-Day Streak";
+"Achievement.Streak5.Description" = "Complete eye rest for 5 consecutive days";
+"Achievement.Streak7.Title" = "Daily Eye Care";
+"Achievement.Streak7.Description" = "Complete eye rest for 7 consecutive days";
+"Achievement.EyesGuardian.Title" = "Eyes Guardian";
+"Achievement.EyesGuardian.Description" = "Accumulate 100 eye rests";
+"Achievement.Master.Title" = "Eye Care Master";
+"Achievement.Master.Description" = "Accumulate 365 eye rests";
+
+/* Time Slots */
+"TimeSlot.Morning" = "Morning 10-12";
+"TimeSlot.Afternoon" = "Afternoon 2-4";
+"TimeSlot.Evening" = "Evening 8-10";

@@ -4,6 +4,82 @@
     "ddg-search": {
       "version": "1.0.0",
       "installedAt": 1770389249278
+    },
+    "vision-analyze": {
+      "version": "1.0.0",
+      "installedAt": 1770463115433
+    },
+    "screen-vision": {
+      "version": "1.0.1",
+      "installedAt": 1770463135211
+    },
+    "automation-workflows": {
+      "version": "0.1.0",
+      "installedAt": 1770463560026
+    },
+    "file-organizer": {
+      "version": "1.0.0",
+      "installedAt": 1770463562041
+    },
+    "coding-agent-g7z": {
+      "version": "1.0.0",
+      "installedAt": 1770463579271
+    },
+    "desktop-control": {
+      "version": "1.0.0",
+      "installedAt": 1770463581585
+    },
+    "browser-use-api": {
+      "version": "1.0.1",
+      "installedAt": 1770463583766
+    },
+    "shell-scripting": {
+      "version": "1.0.0",
+      "installedAt": 1770463598651
+    },
+    "gitlab-manager": {
+      "version": "1.0.0",
+      "installedAt": 1770463604943
+    },
+    "gateway-manager": {
+      "version": "1.1.5",
+      "installedAt": 1770463607828
+    },
+    "image-ocr": {
+      "version": "1.0.0",
+      "installedAt": 1770463667857
+    },
+    "vision-sandbox": {
+      "version": "1.1.0",
+      "installedAt": 1770463957532
+    },
+    "image2prompt": {
+      "version": "1.0.0",
+      "installedAt": 1770463965224
+    },
+    "openclaw-config": {
+      "version": "0.1.0",
+      "installedAt": 1770466121361
+    },
+    "clawgatesecure": {
+      "version": "3.1.0",
+      "installedAt": 1770466140607
+    },
+    "agent-constitution": {
+      "version": "1.0.0",
+      "installedAt": 1770466165247
+    },
+    "agent-config": {
+      "version": "1.0.0",
+      "installedAt": 1770466190430
+    },
+    "request-approval": {
+      "version": "1.0.0",
+      "installedAt": 1770466227170
+    },
+    "project-router": {
+      "version": "1.0.0",
+      "installedAt": 1770466263304
     }
   }
 }

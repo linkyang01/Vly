@@ -1,0 +1,100 @@
+/* EyeCare 本地化字符串 - 简体中文 */
+
+/* 通用 */
+"EyeCare" = "EyeCare";
+"App.Subtitle" = "保护眼睛，守护视力健康";
+"Tab.Home" = "首页";
+"Tab.Stats" = "统计";
+"Tab.Achievements" = "成就";
+"Tab.Settings" = "设置";
+
+/* 首页 */
+"Home.Title" = "EyeCare";
+"Home.Subtitle" = "保护眼睛，守护视力健康";
+"Home.Today's Rest" = "今日护眼";
+"Home.Goal" = "/ %d";
+"Home.Last Rest" = "上次休息";
+"Home.Streak Days" = "连续天数";
+"Home.Quick Rest" = "立即休息";
+"Home.Start Timer" = "开始 20 秒计时";
+"Home.Tip" = "小知识";
+"Home.20-20-20 Rule" = "20-20-20 法则";
+"Home.20-20-20 Description" = "每 20 分钟看远处 20 秒，可以有效缓解眼疲劳";
+
+/* 统计页 */
+"Stats.Title" = "统计";
+"Stats.Subtitle" = "用眼数据一览";
+"Stats.Weekly Total" = "本周总次数";
+"Stats.Times" = "次";
+"Stats.Duration" = "分钟";
+"Stats.Weekly Trend" = "本周趋势";
+"Stats.Average Completion" = "平均完成率: %@";
+"Stats.Peak Hours" = "用眼高峰时段";
+"Stats.Active" = "活跃";
+"Stats.Moderate" = "一般";
+"Stats.Low" = "较少";
+
+/* 成就页 */
+"Achievements.Title" = "成就";
+"Achievements.Subtitle" = "解锁成就，获得荣誉徽章";
+"Achievements.Unlocked" = "已解锁";
+"Achievements.Locked" = "待解锁";
+"Achievements.Unlocked Count" = "%d / %d";
+"Achievements.Keep Going" = "还没有解锁任何成就，继续加油！";
+"Achievements.Progress" = "%d / %d";
+"Achievements.Unlocked Badge" = "已解锁";
+
+/* 设置页 */
+"Settings.Title" = "设置";
+"Settings.Subtitle" = "个性化你的护眼体验";
+"Settings.Notifications" = "提醒设置";
+"Settings.Notifications Enabled" = "提醒开关";
+"Settings.Reminder Interval" = "提醒间隔";
+"Settings.Device" = "关联设置";
+"Settings.Apple Watch Haptic" = "Apple Watch 震动";
+"Settings.BeatSleep" = "关联 BeatSleep";
+"Settings.Shortcuts" = "快捷指令";
+"Settings.About" = "关于";
+"Settings.Version" = "版本信息";
+"Settings.Rate Us" = "给我们评分";
+"Settings.Contact Us" = "联系我们";
+
+/* 关于页面 */
+"About.App Name" = "EyeCare";
+"About.Version" = "版本 %@";
+"About.Description" = "20-20-20 护眼助手\n帮助你养成健康的用眼习惯";
+"About.Done" = "完成";
+
+/* 计时器页面 */
+"Timer.Title" = "20-20-0 护眼时间";
+"Timer.Look Far" = "看向 6 米远的地方";
+"Timer.Complete" = "完成！";
+"Timer.Eyes Refreshed" = "眼睛焕然一新！";
+"Timer.Skip" = "跳过";
+"Timer.Start Timer" = "开始计时";
+"Timer.Snooze" = "稍后提醒";
+
+/* 通知 */
+"Notification.Rest.Title" = "👁️ 让眼睛休息一下";
+"Notification.Rest.Body" = "每 20 分钟看远处 20 秒，有助于缓解眼疲劳";
+"Notification.Achievement.Title" = "🏆 EyeCare";
+"Notification.Achievement.Body" = "🎉 新成就解锁！\n%@\n%@";
+
+/* 成就 */
+"Achievement.Beginner.Title" = "新手护眼者";
+"Achievement.Beginner.Description" = "完成第 1 次护眼";
+"Achievement.Streak3.Title" = "连续护眼 · 3 天";
+"Achievement.Streak3.Description" = "连续 3 天完成护眼";
+"Achievement.Streak5.Title" = "连续护眼 · 5 天";
+"Achievement.Streak5.Description" = "连续 5 天完成护眼";
+"Achievement.Streak7.Title" = "每日护眼";
+"Achievement.Streak7.Description" = "连续 7 天完成护眼";
+"Achievement.EyesGuardian.Title" = "眼睛卫士";
+"Achievement.EyesGuardian.Description" = "累计 100 次护眼";
+"Achievement.Master.Title" = "护眼大师";
+"Achievement.Master.Description" = "累计 365 次护眼";
+
+/* 时段 */
+"TimeSlot.Morning" = "上午 10-12 点";
+"TimeSlot.Afternoon" = "下午 2-4 点";
+"TimeSlot.Evening" = "晚上 8-10 点";

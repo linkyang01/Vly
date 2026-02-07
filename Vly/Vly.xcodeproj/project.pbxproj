@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		341796C3D5E4C3935ABE10F8 /* VlyVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FF50593336E21916229A3A /* VlyVideoPlayerView.swift */; };
 		60DAAAE139B84C0CF34BD27E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D8E76D30645404BAFA84D /* ContentView.swift */; };
+		9FC6A99BF8EE38E3CB1C9A57 /* PlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033B3A7FD9A14B2FBBB02838 /* PlayerControlsView.swift */; };
 		BCC16D9D777D318F92995268 /* VlyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6416DA528A54E9F85537D4C /* VlyApp.swift */; };
-		E46868AA92601592EC3229F1 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B12FCEC138CFDC6E5B681D /* VideoPlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		033B3A7FD9A14B2FBBB02838 /* PlayerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerControlsView.swift; sourceTree = "<group>"; };
 		100D8E76D30645404BAFA84D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		610E3E6849428DCB520AAEA4 /* Vly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vly.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83FF50593336E21916229A3A /* VlyVideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VlyVideoPlayerView.swift; sourceTree = "<group>"; };
 		B6416DA528A54E9F85537D4C /* VlyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VlyApp.swift; sourceTree = "<group>"; };
-		D5B12FCEC138CFDC6E5B681D /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -30,7 +32,8 @@
 		3201A3D1B3BFC4395DB2B2BD /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				D5B12FCEC138CFDC6E5B681D /* VideoPlayerView.swift */,
+				033B3A7FD9A14B2FBBB02838 /* PlayerControlsView.swift */,
+				83FF50593336E21916229A3A /* VlyVideoPlayerView.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -39,6 +42,7 @@
 			isa = PBXGroup;
 			children = (
 				592821781A2AB0939807CD95 /* App */,
+				DC0CB39C162030819FFA781E /* Services */,
 				952CC3C4FFBE12D390BC6575 /* Views */,
 			);
 			path = Sources;
@@ -84,6 +88,13 @@
 				4328C7CAEDE22C3B40250931 /* Sources */,
 				EDCA11858B3259079990009D /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		DC0CB39C162030819FFA781E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		EDCA11858B3259079990009D /* Products */ = {
@@ -153,8 +164,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				60DAAAE139B84C0CF34BD27E /* ContentView.swift in Sources */,
-				E46868AA92601592EC3229F1 /* VideoPlayerView.swift in Sources */,
+				9FC6A99BF8EE38E3CB1C9A57 /* PlayerControlsView.swift in Sources */,
 				BCC16D9D777D318F92995268 /* VlyApp.swift in Sources */,
+				341796C3D5E4C3935ABE10F8 /* VlyVideoPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
