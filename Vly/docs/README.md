@@ -13,6 +13,7 @@
 | [05-Services](05-Services/SERVICES.md) | 服务设计 | PlayerService、PlaylistService |
 | [06-Research](06-Research/KSPLAYER_INTEGRATION.md) | 研究文档 | KSPlayer 集成问题 |
 | [06-Research](06-Research/KSPLAYER_AND_IINA_REFERENCE.md) | **KSPlayer + IINA 参考** | 源码分析、UI 设计规范 |
+| [06-Research](06-Research/IMPLEMENTATION_PLAN.md) | **完整实施方案** | 步骤、时间安排、验收标准 |
 
 ## 快速导航
 
