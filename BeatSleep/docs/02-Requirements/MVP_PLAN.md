@@ -1,8 +1,8 @@
 # BeatSleep MVP 计划
 
-> 版本: 1.0.0  
-> 更新日期: 2026-02-06  
-> 状态: 正式发布
+> 版本: 1.1.0  
+> 更新日期: 2026-02-07  
+> 状态: 正式发布（含买一送一策略）
 
 ---
 
@@ -68,8 +68,68 @@ Day 8: 付费 / 流失
 | 方案 | 价格 | 说明 |
 |------|------|------|
 | 月付 | $4.99/月 | 低门槛尝试 |
-| 年付 | $39.99/年 | 折扣20% |
-| 终身 | $99.99 | 一次买断 |
+| 年付 | $39.99/年 | 折扣 20% |
+| 终身 | $99.99 | 一次买断 + 送 EyeCare 终身 |
+
+---
+
+### 🎯 买一送一策略（新增）
+
+**购买 BeatSleep 终身版，自动解锁 EyeCare 终身 Pro**
+
+#### 套餐设计
+
+| 套餐 | 价格 | 包含 |
+|------|------|------|
+| **BeatSleep 终身版** | $99.99 | BeatSleep 终身 + EyeCare 终身 ✅ |
+| **EyeCare 单独购买** | $49.99 | EyeCare 终身 |
+
+**用户感觉**：买 BeatSleep 送 EyeCare = 多得 $50 价值
+
+---
+
+#### 为什么这个策略好？
+
+| 效果 | 说明 |
+|------|------|
+| **终身版吸引力提升** | 附加值更高，转化率提升 20-30% |
+| **EyeCare 推广** | 自动获得种子用户 |
+| **用户粘性** | 两个 App 一起用，形成健康习惯 |
+| **口碑传播** | "买一个送一个，超值" |
+
+---
+
+#### 技术实现
+
+```swift
+// BeatSleep: 标记终身版用户
+func unlockEyeCareForLifetimeUser() {
+    let sharedDefaults = UserDefaults(suiteName: "group.com.beatsleep.shared")
+    sharedDefaults?.set(true, forKey: "hasBeatSleepLifetime")
+}
+
+// EyeCare: 检测并解锁
+if sharedDefaults?.bool(forKey: "hasBeatSleepLifetime") == true {
+    unlockProFeatures()
+}
+```
+
+---
+
+#### 用户体验流程
+
+```
+1. 用户看到 BeatSleep 终身版广告
+   "仅 $99.99，终身使用 + 送 EyeCare 终身版"
+
+2. 心动，购买
+
+3. 下载 EyeCare
+   "检测到您有 BeatSleep 终身版，是否解锁 Pro？"
+   [一键解锁]
+
+4. 爽！两个 App 一起用，形成健康习惯
+```
 
 ---
 
