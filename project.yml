@@ -1,0 +1,69 @@
+name: Vly
+options:
+  bundleIdPrefix: com.vly
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+
+packages:
+  KSPlayer:
+    url: https://github.com/kingslay/KSPlayer.git
+    branch: main
+
+targets:
+  Vly:
+    type: application
+    platform: macOS
+    deploymentTarget: "12.0"
+    sources:
+      - path: Sources
+      - path: Resources
+    dependencies:
+      - package: KSPlayer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vly.app
+        CODE_SIGN_STYLE: Automatic
+        MACOSX_DEPLOYMENT_TARGET: "12.0"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Vly
+        INFOPLIST_KEY_CFBundleName: Vly
+        INFOPLIST_KEY_CFBundleShortVersionString: "1.0.0"
+        INFOPLIST_KEY_CFBundleVersion: "1"
+        INFOPLIST_KEY_NSMainStoryboardFile: ""
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        SWIFT_EMIT_LOC_STRINGS: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        COMBINE_HIDPI_IMAGES: YES
+        LD_RUNPATH_SEARCH_PATHS:
+          - $(inherited)
+          - "@executable_path/../Frameworks"
+        ENABLE_BITCODE: NO
+        DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_ENTITLEMENTS: ""
+        VALIDATE_PRODUCT: NO
+
+schemes:
+  Vly:
+    build:
+      targets:
+        Vly: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vly - 控制栏原型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            background: #111;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .window {
+            width: 960px;
+            height: 540px;
+            background: #000;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+        
+        .video-area {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #0a0a12 0%, #1a1a2a 100%);
+        }
+        
+        .video-placeholder {
+            width: 60%;
+            height: 50%;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 48px;
+        }
+        
+        /* 悬浮控制栏 */
+        .floating-control {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 25, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 13px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            opacity: 1;
+        }
+        
+        .btn svg {
+            fill: #fff;
+        }
+        
+        .time {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 9px;
+            color: rgba(255,255,255,0.6);
+            white-space: nowrap;
+        }
+        
+        .separator {
+            width: 1px;
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* 进度条容器 */
+        .progress-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            margin: 0 6px;
+        }
+        
+        .progress-track {
+            width: 100%;
+            height: 2px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 1px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 30%;
+            background: #fff;
+            border-radius: 1px;
+        }
+        
+        .progress-knob {
+            position: absolute;
+            left: 30%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .progress-track:hover .progress-knob {
+            opacity: 1;
+        }
+        
+        .editor {
+            width: 960px;
+            padding: 30px 0;
+        }
+        
+        .editor-title {
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+        
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .row label {
+            color: #888;
+            font-size: 11px;
+            width: 80px;
+        }
+        
+        .row input[type="range"] {
+            width: 150px;
+            cursor: pointer;
+        }
+        
+        .row span {
+            color: #555;
+            font-size: 10px;
+            width: 50px;
+        }
+        
+        .preset-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .preset-btn {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #888;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        
+        .preset-btn:hover {
+            background: #252525;
+            color: #fff;
+        }
+        
+        .element-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+        }
+        
+        .element-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #aaa;
+        }
+        
+        .element-tag svg {
+            fill: #fff;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="video-area">
+            <div class="video-placeholder">🎬</div>
+        </div>
+        
+        <!-- 悬浮控制栏 -->
+        <div class="floating-control">
+            <!-- 播放列表 -->
+            <button class="btn" title="播放列表" style="opacity:0.6">
+                <svg width="10" height="10" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+            
+            <div class="separator"></div>
+            
+            <!-- 后退15秒 -->
+            <button class="btn" title="后退15秒">
+                <svg width="10" height="10" viewBox="0 0 24 24"><path d="M6.5 3c-1.4 0-2.5 1.1-2.5 2.5v13c0 1.4 1.1 2.5 2.5 2.5h8.1l5.5 3.5V7l-5.5 3.5H6.5c-1.4 0-2.5-1.1-2.5-2.5V5.5C4 4.1 5.1 3 6.5 3zM11 8.5v7l-4-3.5 4-3.5z"/></svg>
+            </button>
+            
+            <!-- 播放/暂停 -->
+            <button class="btn" title="播放" style="opacity:1">
+                <svg width="12" height="12" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            
+            <!-- 前进15秒 -->
+            <button class="btn" title="前进15秒">
+                <svg width="10" height="10" viewBox="0 0 24 24"><path d="M17.5 3H9.4c-1.4 0-2.5 1.1-2.5 2.5v13c0 1.4 1.1 2.5 2.5 2.5h8.1l5.5 3.5V7l-5.5 3.5zM12 8.5v7l-4-3.5 4-3.5z"/></svg>
+            </button>
+            
+            <div class="separator"></div>
+            
+            <!-- 时间 -->
+            <span class="time">0:00 / 12:34</span>
+            
+            <!-- 进度条 -->
+            <div class="progress-container">
+                <div class="progress-track">
+                    <div class="progress-fill"></div>
+                    <div class="progress-knob"></div>
+                </div>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <!-- 设置 -->
+            <button class="btn" title="设置" style="opacity:0.6">
+                <svg width="10" height="10" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            </button>
+        </div>
+    </div>
+    
+    <div class="editor">
+        <div class="editor-title">控制栏元素列表</div>
+        <div class="element-list">
+            <div class="element-tag">
+                <svg width="10" height="10" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                播放列表
+            </div>
+            <div class="element-tag">
+                <svg width="10" height="10" viewBox="0 0 24 24"><path d="M6.5 3c-1.4 0-2.5 1.1-2.5 2.5v13c0 1.4 1.1 2.5 2.5 2.5h8.1l5.5 3.5V7l-5.5 3.5H6.5c-1.4 0-2.5-1.1-2.5-2.5V5.5C4 4.1 5.1 3 6.5 3zM11 8.5v7l-4-3.5 4-3.5z"/></svg>
+                后退15S
+            </div>
+            <div class="element-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                播放/停止
+            </div>
+            <div class="element-tag">
+                <svg width="10" height="10" viewBox="0 0 24 24"><path d="M17.5 3H9.4c-1.4 0-2.5 1.1-2.5 2.5v13c0 1.4 1.1 2.5 2.5 2.5h8.1l5.5 3.5V7l-5.5 3.5zM12 8.5v7l-4-3.5 4-3.5z"/></svg>
+                前进15S
+            </div>
+            <div class="element-tag">
+                0:00 / 12:34
+            </div>
+            <div class="element-tag">
+                ─────────── 进度条
+            </div>
+            <div class="element-tag">
+                <svg width="10" height="10" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58z"/></svg>
+                设置
+            </div>
+        </div>
+        
+        <div class="row">
+            <label>控制栏宽度</label>
+            <input type="range" min="200" max="500" value="320" id="barWidth">
+            <span>320px</span>
+        </div>
+        
+        <div class="row">
+            <label>元素间距</label>
+            <input type="range" min="4" max="20" value="10" id="elementGap">
+            <span>10px</span>
+        </div>
+        
+        <div class="row">
+            <label>进度条位置</label>
+            <select id="progressPos" style="background:#222;color:#888;border:1px solid #333;padding:4px 8px;border-radius:4px;font-size:11px;">
+                <option value="left">左侧</option>
+                <option value="right" selected>右侧</option>
+                <option value="fill">充满</option>
+            </select>
+        </div>
+    </div>
+    
+    <script>
+        const barWidth = document.getElementById('barWidth');
+        const elementGap = document.getElementById('elementGap');
+        const progressPos = document.getElementById('progressPos');
+        const control = document.querySelector('.floating-control');
+        const progressContainer = document.querySelector('.progress-container');
+        
+        function update() {
+            control.style.width = barWidth.value + 'px';
+            control.style.gap = elementGap.value + 'px';
+            barWidth.nextElementSibling.textContent = barWidth.value + 'px';
+            elementGap.nextElementSibling.textContent = elementGap.value + 'px';
+            
+            // 进度条位置
+            if (progressPos.value === 'left') {
+                progressContainer.style.order = '-1';
+            } else if (progressPos.value === 'right') {
+                progressContainer.style.order = '1';
+            } else {
+                progressContainer.style.flex = '1';
+            }
+        }
+        
+        barWidth.oninput = update;
+        elementGap.oninput = update;
+        progressPos.onchange = update;
+        update();
+    </script>
+</body>
+</html>

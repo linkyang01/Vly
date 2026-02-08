@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Vly 控制栏设计器</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0f;
+            min-height: 100vh;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            font-family: -apple-system, sans-serif;
+        }
+        .preview {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .video {
+            width: 100%;
+            max-width: 700px;
+            aspect-ratio: 16/9;
+            background: #0d0d14;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .bar {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(30,30,40,0.85);
+            border-radius: 10px;
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            padding: 6px 14px;
+            gap: 4px;
+        }
+        .row1 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .row2 {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .icon {
+            color: rgba(255,255,255,0.85);
+            cursor: pointer;
+        }
+        .divider {
+            width: 1px;
+            height: 14px;
+            background: rgba(255,255,255,0.15);
+            margin: 0 6px;
+        }
+        .vol-bar {
+            width: 30px;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            position: relative;
+        }
+        .vol-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 70%;
+            background: rgba(255,255,255,0.7);
+            border-radius: 2px;
+        }
+        .time {
+            font-size: 10px;
+            color: rgba(255,255,255,0.6);
+            min-width: 30px;
+        }
+        .prog-track {
+            flex: 1;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            position: relative;
+        }
+        .prog-fill {
+            height: 100%;
+            width: 30%;
+            background: rgba(255,255,255,0.8);
+            border-radius: 2px;
+        }
+        .prog-thumb {
+            position: absolute;
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+        }
+        .panel {
+            width: 280px;
+            background: rgba(25,25,35,0.95);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .panel h3 {
+            color: rgba(255,255,255,0.6);
+            font-size: 12px;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .row label {
+            width: 70px;
+            color: rgba(255,255,255,0.5);
+            font-size: 11px;
+        }
+        .row input {
+            flex: 1;
+        }
+        .row span {
+            width: 35px;
+            text-align: right;
+            color: rgba(255,255,255,0.4);
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="preview">
+        <div class="video" id="video">
+            <div class="bar" id="bar" style="width:240px;height:56px;">
+                <div class="row1">
+                    <div style="display:flex;align-items:center;gap:4px;">
+                        <span class="icon" id="iconVol" style="font-size:11px;">🔈</span>
+                        <div class="vol-bar"><div class="vol-fill"></div></div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="icon" id="iconRew" style="font-size:11px;">⏮</span>
+                        <span class="icon" id="iconPlay" style="font-size:14px;margin:0 4px;">▶</span>
+                        <span class="icon" id="iconFwd" style="font-size:11px;">⏭</span>
+                        <div class="divider"></div>
+                        <span class="icon" id="iconList" style="font-size:11px;">⊞</span>
+                        <span class="icon" id="iconSet" style="font-size:11px;">⚙</span>
+                    </div>
+                </div>
+                <div class="row2">
+                    <span class="time">0:00</span>
+                    <div class="prog-track"><div class="prog-fill"><div class="prog-thumb"></div></div></div>
+                    <span class="time">45:30</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel">
+        <h3>控制栏</h3>
+        <div class="row">
+            <label>宽度</label>
+            <input type="range" id="w" min="150" max="400" value="240" oninput="up()">
+            <span id="wv">240</span>
+        </div>
+        <div class="row">
+            <label>高度</label>
+            <input type="range" id="h" min="40" max="80" value="56" oninput="up()">
+            <span id="hv">56</span>
+        </div>
+        <div class="row">
+            <label>圆角</label>
+            <input type="range" id="r" min="0" max="30" value="10" oninput="up()">
+            <span id="rv">10</span>
+        </div>
+        <div class="row">
+            <label>底部</label>
+            <input type="range" id="b" min="5" max="100" value="30" oninput="up()">
+            <span id="bv">30</span>
+        </div>
+        
+        <h3 style="margin-top:15px;">图标大小</h3>
+        <div class="row">
+            <label>音量</label>
+            <input type="range" id="vs" min="8" max="18" value="11" oninput="up()">
+            <span id="vsv">11</span>
+        </div>
+        <div class="row">
+            <label>播放</label>
+            <input type="range" id="ps" min="10" max="24" value="14" oninput="up()">
+            <span id="psv">14</span>
+        </div>
+        <div class="row">
+            <label>快进</label>
+            <input type="range" id="ss" min="8" max="18" value="11" oninput="up()">
+            <span id="ssv">11</span>
+        </div>
+        <div class="row">
+            <label>其他</label>
+            <input type="range" id="es" min="8" max="18" value="11" oninput="up()">
+            <span id="esv">11</span>
+        </div>
+        
+        <h3 style="margin-top:15px;">进度条</h3>
+        <div class="row">
+            <label>字体</label>
+            <input type="range" id="ts" min="8" max="14" value="10" oninput="up()">
+            <span id="tsv">10</span>
+        </div>
+        <div class="row">
+            <label>高度</label>
+            <input type="range" id="hs" min="2" max="8" value="3" oninput="up()">
+            <span id="hsv">3</span>
+        </div>
+    </div>
+    
+    <script>
+        function up() {
+            var bar = document.getElementById('bar');
+            bar.style.width = document.getElementById('w').value + 'px';
+            bar.style.height = document.getElementById('h').value + 'px';
+            bar.style.borderRadius = document.getElementById('r').value + 'px';
+            bar.style.bottom = document.getElementById('b').value + 'px';
+            
+            document.getElementById('wv').innerText = document.getElementById('w').value;
+            document.getElementById('hv').innerText = document.getElementById('h').value;
+            document.getElementById('rv').innerText = document.getElementById('r').value;
+            document.getElementById('bv').innerText = document.getElementById('b').value;
+            
+            document.getElementById('iconVol').style.fontSize = document.getElementById('vs').value + 'px';
+            document.getElementById('iconPlay').style.fontSize = document.getElementById('ps').value + 'px';
+            document.getElementById('iconRew').style.fontSize = document.getElementById('ss').value + 'px';
+            document.getElementById('iconFwd').style.fontSize = document.getElementById('ss').value + 'px';
+            document.getElementById('iconList').style.fontSize = document.getElementById('es').value + 'px';
+            document.getElementById('iconSet').style.fontSize = document.getElementById('es').value + 'px';
+            
+            document.getElementById('vsv').innerText = document.getElementById('vs').value;
+            document.getElementById('psv').innerText = document.getElementById('ps').value;
+            document.getElementById('ssv').innerText = document.getElementById('ss').value;
+            document.getElementById('esv').innerText = document.getElementById('es').value;
+            
+            document.querySelectorAll('.time').forEach(function(t){t.style.fontSize=document.getElementById('ts').value+'px'});
+            document.querySelector('.prog-track').style.height=document.getElementById('hs').value+'px';
+            
+            document.getElementById('tsv').innerText = document.getElementById('ts').value;
+            document.getElementById('hsv').innerText = document.getElementById('hs').value;
+        }
+        up();
+    </script>
+</body>
+</html>
