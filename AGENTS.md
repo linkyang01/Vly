@@ -1,131 +1,120 @@
-# Vly 项目 AI 行为规范
+# AGENTS.md - Vly 项目 AI 开发规范
 
-## ⚠️ 核心约束（必须做到）
+## 项目重启状态
 
-> **做不到就放弃这个项目**
+Vly 已重启为 Apple 生态全能媒体播放器项目，目标是做类似 Infuse 的本地与网络媒体播放体验。
 
-### 播放器约束
+当前阶段不是继续修旧代码，而是重新建立需求、架构、MVP 范围和最小播放器 Demo。
 
-| 约束 | 要求 | 做不到？ |
-|------|------|---------|
-| **KSPlayer** | 必须使用 KSPlayer 作为播放器内核 | ❌ 放弃项目 |
-| **FFmpeg** | 必须激活 FFmpeg 解码，支持多格式 | ❌ 放弃项目 |
-| **多格式** | MKV、AVI、FLV 等必须能播放 | ❌ 放弃项目 |
-| **AVPlayer** | 基础 AVPlayer 无法满足多格式需求 | ❌ 不能只用 AVPlayer |
+## 最高优先级原则
 
-### 代码约束
+1. 播放内核优先于 UI 美化。
+2. 第一阶段只做 macOS。
+3. 不允许只用 AVPlayer 作为核心播放器。
+4. 必须围绕 KSPlayer 与 FFmpeg 能力建立播放内核适配层。
+5. 不要一开始做媒体库、海报墙、iCloud 同步和多平台适配。
+6. 每个阶段必须有明确验收标准。
+7. 代码变更必须同步更新文档。
+8. 高风险删除、重构、依赖调整必须先说明影响。
 
-```swift
-// ✅ 正确：使用 KSPlayer
-import KSPlayer
-let player = KSPlayerNode()
+## 产品方向
 
-// ❌ 错误：只使用 AVPlayer
-import AVKit
-let player = AVPlayer()  // ← 不允许！
+Vly 长期目标包括：
+
+- 多格式视频播放；
+- 本地文件与文件夹播放；
+- 字幕加载与切换；
+- 多音轨切换；
+- 播放列表与播放队列；
+- 本地媒体库与海报墙；
+- 电影、电视剧、季集识别；
+- SMB、WebDAV、DLNA、URL Stream；
+- iCloud 同步播放进度和偏好；
+- 后续扩展到 iOS、iPadOS、tvOS。
+
+## 第一阶段 MVP 约束
+
+第一阶段只做 macOS 本地播放器 Demo。
+
+必须包含：
+
+- 打开本地视频文件；
+- 拖拽文件播放；
+- KSPlayer 播放适配；
+- MP4 与 MKV 基础播放验证；
+- 播放、暂停、进度、音量、全屏；
+- 基础错误提示。
+
+暂不包含：
+
+- 媒体库；
+- 海报墙；
+- TMDB 元数据；
+- SMB / WebDAV / DLNA；
+- iCloud 同步；
+- iOS / iPadOS / tvOS；
+- 商业化功能。
+
+## 技术规范
+
+- 语言：Swift
+- UI：SwiftUI
+- 平台：macOS first
+- 架构：MVVM + PlayerCore Adapter
+- 播放内核：KSPlayer + FFmpeg 能力
+- 项目管理：优先使用 XcodeGen 或 Swift Package Manager，具体以技术验证结果确定
+
+## 建议目录结构
+
+```text
+Vly/
+├── Sources/
+│   ├── App/
+│   ├── PlayerCore/
+│   ├── Models/
+│   ├── Services/
+│   ├── Views/
+│   └── Utilities/
+├── Resources/
+├── docs/
+│   ├── PRD.md
+│   ├── TECHNICAL_ARCHITECTURE.md
+│   ├── ROADMAP.md
+│   ├── FORMAT_SUPPORT.md
+│   └── MVP_SCOPE.md
+├── scripts/
+├── project.yml
+└── README.md
 ```
 
-## 项目概述
+## 开发顺序
 
-- **名称**: Vly
-- **描述**: 简洁优雅的 macOS/iOS 视频播放器
-- **技术栈**: SwiftUI 4.0, **KSPlayer + FFmpeg**
-- **平台**: macOS 12.0+ / iOS 15.0+
-- **License**: GPL v3
-
-## 代码规范
-
-### 命名规范
-
-- **Swift**: 遵循 Apple Swift Style Guide
-- **文件名**: UpperCamelCase (例如: `VideoPlayerView.swift`)
-- **变量/函数**: lowerCamelCase (例如: `currentTime`)
-- **常量**: k 开头 (例如: `kMaxVolume`)
-
-### 架构规范
-
-- **MVVM**: 遵循 Model-View-ViewModel 模式
-- **Protocol**: 面向接口编程
-- **Separation of Concerns**: 视图、服务、模型分离
-
-### 文件组织
-
-```
-Sources/
-├── App/           # 应用入口和根视图
-├── Views/          # UI 组件
-│   ├── Player/     # 播放器相关
-│   ├── Controls/   # 控制组件
-│   ├── Playlist/   # 播放列表
-│   └── Settings/  # 设置页面
-├── Models/         # 数据模型
-├── Services/       # 业务逻辑
-└── Utilities/      # 工具类
-```
-
-## 文档规范
-
-### 文档位置
-
-所有设计文档存放在 `docs/` 目录：
-
-| 目录 | 内容 |
-|------|------|
-| `docs/01-Architecture/` | 架构设计 |
-| `docs/02-Requirements/` | 功能需求 |
-| `docs/03-UI-UX/` | UI/UX 设计 |
-| `docs/04-Data-Models/` | 数据模型 |
-| `docs/05-Services/` | 服务设计 |
-| `docs/06-Research/` | 研究文档 |
-
-### 文档格式
-
-- 使用 Markdown (.md)
-- 标题使用中文
-- 代码示例使用 Swift
-- 保持文档与代码同步更新
-
-## 会话启动
-
-处理 Vly 项目时必须：
-
-1. ✅ 首先阅读项目 README.md
-2. ✅ 阅读相关设计文档
-3. ✅ 确认使用 KSPlayer（不是基础 AVPlayer）
-4. ✅ 遵循代码规范
-5. ✅ 保持文档更新
-6. ✅ 提交前运行代码格式化
-
-## 常用命令
-
-### XcodeGen
-
-```bash
-# 生成项目
-xcodegen generate
-
-# 查看配置
-xcodegen dump
-```
-
-### 格式化
-
-```bash
-# SwiftFormat (如果安装)
-swiftformat .
-```
+1. 完成需求文档。
+2. 完成技术架构文档。
+3. 完成格式支持清单。
+4. 建立 macOS 最小播放器工程。
+5. 集成 KSPlayer。
+6. 验证 MP4 / MKV 播放。
+7. 加基础播放控制。
+8. 再进入字幕、音轨、播放列表。
 
 ## 禁止行为
 
-- ❌ **不要只使用 AVPlayer**（必须用 KSPlayer + FFmpeg）
-- ❌ 不要修改 KSPlayer 源码（使用适配器模式）
-- ❌ 不要跳过代码规范
-- ❌ 不要忘记更新文档
-- ❌ 不要使用过时的 API
+- 不要只用 AVPlayer 交付全能播放器能力。
+- 不要先做复杂媒体库。
+- 不要先做 iOS / tvOS。
+- 不要直接复制旧结构继续修补。
+- 不要把不能运行的空架构当作完成。
+- 不要忽略许可证风险。
+- 不要修改第三方播放器源码，优先使用适配层。
 
-## 相关链接
+## PR 要求
 
-- [KSPlayer](https://github.com/kingslay/KSPlayer)
-- [FFmpeg](https://ffmpeg.org/)
-- [SwiftUI 文档](https://developer.apple.com/swiftui/)
-- [Apple Swift Style Guide](https://www.swift.org/documentation/api-design-guidelines/)
+每个 PR 必须说明：
+
+1. 本次修改内容；
+2. 影响范围；
+3. 是否涉及播放内核；
+4. 是否涉及依赖或许可证；
+5. 如何验证；
+6. 风险点和后续工作。
